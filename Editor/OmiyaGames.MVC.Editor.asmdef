@@ -1,5 +1,6 @@
 {
-    "name": "OmiyaGames.Template.Editor",
+    "name": "OmiyaGames.MVC.Editor",
+    "rootNamespace": "OmiyaGames.MVC.Editor",
     "references": [
         "OmiyaGames.Template"
     ],
@@ -12,5 +13,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }
