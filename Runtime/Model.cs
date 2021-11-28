@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace OmiyaGames.MVC
@@ -51,12 +49,12 @@ namespace OmiyaGames.MVC
 	/// </summary>
 	public abstract class Model : MonoBehaviour, IModel
 	{
+		[SerializeField]
+		[ReadOnly]
+		string key;
+
 		/// <inheritdoc/>
-		public string Key
-		{
-			get;
-			private set;
-		}
+		public string Key => key;
 
 		/// <inheritdoc/>
 		public void OnCreate(string key, ModelFactory source)
@@ -71,7 +69,7 @@ namespace OmiyaGames.MVC
 			}
 
 			// Setup member variables
-			Key = key;
+			this.key = key;
 			OnCreate(source);
 		}
 
