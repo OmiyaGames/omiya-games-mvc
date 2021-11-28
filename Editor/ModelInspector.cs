@@ -50,29 +50,28 @@ namespace OmiyaGames.MVC.Editor
 	/// </summary>
 	public class ModelInspector : EditorWindow
 	{
-		UnityEditor.Editor editor;
-
 		[MenuItem("Tools/Omiya Games/Model Inspector")]
 		[MenuItem("Window/Omiya Games/Model Inspector")]
 		static void Initialize()
 		{
 			ModelInspector window = GetWindow<ModelInspector>(title: "Model Inspector");
-			window.editor = UnityEditor.Editor.CreateEditor(ModelFactory.InstanceObject);
 			window.Show();
 		}
 
 		void OnGUI()
 		{
-			// TODO: consider using editor visual tree?
-			// FIXME: this doesn't work
-			editor.DrawDefaultInspector();
+			if (GUILayout.Button("Reset") == true)
+			{
+				ModelFactory.Reset();
+			}
 
-			// FIXME: this doesn't work, either
-			//foreach(var model in ModelFactory.AllModels)
-			//{
-			//	var test = UnityEditor.Editor.CreateEditor((Object)model);
-			//	test.DrawDefaultInspector();
-			//}
+			// TODO: consider using editor visual tree?
+			foreach (var model in ModelFactory.AllModels)
+			{
+				// FIXME: better performance, better visuals, please.
+				var test = UnityEditor.Editor.CreateEditor((Component)model);
+				test.DrawDefaultInspector();
+			}
 		}
 	}
 }

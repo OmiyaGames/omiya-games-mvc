@@ -87,13 +87,13 @@ namespace OmiyaGames.MVC
 		readonly Dictionary<KeyPair, IModel> keyToModelMap = new Dictionary<KeyPair, IModel>();
 
 		/// <summary>
-		/// Gets all the created models.
+		/// Gets all the created models, and their associated keys.
 		/// </summary>
 		public static IEnumerable<IModel> AllModels => KeyToModelMap.Values;
 		/// <summary>
-		/// The <seealso cref="GameObject"/> this factory is attached to.
+		/// Number of models created so far.
 		/// </summary>
-		public static GameObject InstanceObject => Instance.gameObject;
+		public static int NumberOfModels => KeyToModelMap.Count;
 
 		/// <summary>
 		/// Creates a unique <see cref="IModel"/>,
@@ -131,7 +131,7 @@ namespace OmiyaGames.MVC
 			}
 
 			// Create the component
-			T returnComponent = InstanceObject.AddComponent<T>();
+			T returnComponent = Instance.gameObject.AddComponent<T>();
 
 			// Add the component to the map before initializing
 			KeyToModelMap.Add(pair, returnComponent);
