@@ -90,6 +90,10 @@ namespace OmiyaGames.MVC
 		/// Gets all the created models.
 		/// </summary>
 		public static IEnumerable<IModel> AllModels => KeyToModelMap.Values;
+		/// <summary>
+		/// The <seealso cref="GameObject"/> this factory is attached to.
+		/// </summary>
+		public static GameObject InstanceObject => Instance.gameObject;
 
 		/// <summary>
 		/// Creates a unique <see cref="IModel"/>,
@@ -127,7 +131,7 @@ namespace OmiyaGames.MVC
 			}
 
 			// Create the component
-			T returnComponent = Instance.gameObject.AddComponent<T>();
+			T returnComponent = InstanceObject.AddComponent<T>();
 
 			// Add the component to the map before initializing
 			KeyToModelMap.Add(pair, returnComponent);
