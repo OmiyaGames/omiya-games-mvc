@@ -47,11 +47,6 @@ namespace OmiyaGames.MVC
 	/// </summary>
 	public interface IModel
 	{
-		string name
-		{
-			get;
-		}
-
 		/// <summary>
 		/// Key associated with this model.
 		/// </summary>
