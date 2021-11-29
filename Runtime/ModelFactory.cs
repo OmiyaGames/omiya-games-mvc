@@ -58,7 +58,7 @@ namespace OmiyaGames.MVC
 	{
 		struct KeyPair
 		{
-			internal KeyPair(Type type, string key)
+			public KeyPair(Type type, string key)
 			{
 				// Prevent null keys.
 				if (key == null)
@@ -81,15 +81,20 @@ namespace OmiyaGames.MVC
 			}
 		}
 
-		static ModelFactory Instance => ComponentSingleton<ModelFactory>.Instance;
 		static Dictionary<KeyPair, IModel> KeyToModelMap => Instance.keyToModelMap;
+		static HashSet<IModel> ModelSet => Instance.modelSet;
 
 		readonly Dictionary<KeyPair, IModel> keyToModelMap = new Dictionary<KeyPair, IModel>();
+		readonly HashSet<IModel> modelSet = new HashSet<IModel>();
 
 		/// <summary>
-		/// Gets all the created models, and their associated keys.
+		/// Gets the sole instance of this factory.
 		/// </summary>
-		public static IEnumerable<IModel> AllModels => KeyToModelMap.Values;
+		public static ModelFactory Instance => ComponentSingleton<ModelFactory>.Instance;
+		/// <summary>
+		/// Gets all the created models. Order is not guaranteed.
+		/// </summary>
+		public static IEnumerable<IModel> AllModels => ModelSet;
 		/// <summary>
 		/// Number of models created so far.
 		/// </summary>
@@ -135,10 +140,46 @@ namespace OmiyaGames.MVC
 
 			// Add the component to the map before initializing
 			KeyToModelMap.Add(pair, returnComponent);
+			ModelSet.Add(returnComponent);
 			returnComponent.OnCreate(key, Instance);
 
 			// Return the component
 			return returnComponent;
+		}
+
+		/// <summary>
+		/// Checks if factory created a model with key.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of <see cref="IModel"/>.
+		/// </typeparam>
+		/// <param name="key">
+		/// Optional key associated with model.
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if key is found in the factory.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		/// If <paramref name="key"/> is <c>null</c>.
+		/// </exception>
+		public static bool Contains<T>(string key = "")
+		{
+			return KeyToModelMap.ContainsKey(new KeyPair(typeof(T), key));
+		}
+
+		/// <summary>
+		/// Checks if the factory has <paramref name="model"/>
+		/// stored in its dictionary.
+		/// </summary>
+		/// <param name="model">
+		/// The instance to check if factory contains it.
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if <paramref name="model"/> is found in the factory.
+		/// </returns>
+		public static bool Contains(IModel model)
+		{
+			return ModelSet.Contains(model);
 		}
 
 		/// <summary>
@@ -268,6 +309,10 @@ namespace OmiyaGames.MVC
 			bool returnFlag = KeyToModelMap.TryGetValue(pair, out IModel model);
 			if (returnFlag)
 			{
+				// Remove from records
+				KeyToModelMap.Remove(pair);
+				ModelSet.Remove(model);
+
 				// Destroy the model
 				Helpers.Destroy((T)model);
 			}
@@ -281,6 +326,7 @@ namespace OmiyaGames.MVC
 		/// </summary>
 		public static void Reset()
 		{
+			// Just destroy this script (and its member varibles) entirely
 			ComponentSingleton<ModelFactory>.Release();
 		}
 	}

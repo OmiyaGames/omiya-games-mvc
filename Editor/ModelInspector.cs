@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditorInternal;
 
 namespace OmiyaGames.MVC.Editor
 {
@@ -50,27 +50,108 @@ namespace OmiyaGames.MVC.Editor
 	/// </summary>
 	public class ModelInspector : EditorWindow
 	{
+		UnityEditor.Editor editor = null;
+		bool isFactoryExpanded = false;
+		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
+		readonly List<Object> destroyedObjects = new List<Object>();
+
 		[MenuItem("Tools/Omiya Games/Model Inspector")]
 		[MenuItem("Window/Omiya Games/Model Inspector")]
 		static void Initialize()
 		{
-			ModelInspector window = GetWindow<ModelInspector>(title: "Model Inspector");
+			ModelInspector window = GetWindow<ModelInspector>("Model Inspector", true);
 			window.Show();
+		}
+
+		void OnEnable()
+		{
+			titleContent = new GUIContent("Model Inspector", null, "Displays runtime model data");
+			editor = UnityEditor.Editor.CreateEditor(ModelFactory.Instance.gameObject);
+			objectToEditorCache.Clear();
 		}
 
 		void OnGUI()
 		{
-			if (GUILayout.Button("Reset") == true)
+			// Only draw the following if app is playing
+			if (Application.isPlaying == false)
 			{
-				ModelFactory.Reset();
+				EditorGUILayout.HelpBox("Play the game to see runtime data!", MessageType.Info);
+				return;
 			}
 
-			// TODO: consider using editor visual tree?
-			foreach (var model in ModelFactory.AllModels)
+			// Draw any common actions
+			DrawCommonFoldOut();
+
+			// Update the factory gameobject to its latest settings
+			SerializedObject factory = editor.serializedObject;
+			factory.Update();
+
+			// Draw the models in the factory
+			DrawAllModels(factory.FindProperty("m_Component"));
+
+			// Record any changes
+			factory.ApplyModifiedProperties();
+		}
+
+		void DrawCommonFoldOut()
+		{
+			// Start the fold out
+			isFactoryExpanded = EditorGUILayout.BeginFoldoutHeaderGroup(isFactoryExpanded, "Model Factory");
+			if (isFactoryExpanded)
 			{
-				// FIXME: better performance, better visuals, please.
-				var test = UnityEditor.Editor.CreateEditor((Component)model);
-				test.DrawDefaultInspector();
+				// Draw the reset button
+				if (GUILayout.Button("Destroy All Models") == true)
+				{
+					// Call reset on click
+					ModelFactory.Reset();
+				}
+			}
+			EditorGUILayout.EndFoldoutHeaderGroup();
+		}
+
+		void DrawAllModels(SerializedProperty allComponents)
+		{
+			// Go through all components in the factory
+			for (int i = 0; i < allComponents.arraySize; ++i)
+			{
+				// Grab the component
+				SerializedProperty component = allComponents.GetArrayElementAtIndex(i).FindPropertyRelative("component");
+
+				// Check if this component is a model in the ModelFactory
+				if ((component != null) && (component.objectReferenceValue is IModel) && ModelFactory.Contains((IModel)component.objectReferenceValue))
+				{
+					// If so, check if an editor for this model already exists
+					if (objectToEditorCache.TryGetValue(component.objectReferenceValue, out var comEditor) == false)
+					{
+						// If not, construct one, and cache it
+						comEditor = UnityEditor.Editor.CreateEditor(component.objectReferenceValue);
+						objectToEditorCache.Add(component.objectReferenceValue, comEditor);
+					}
+
+					// Draw the component's title bar
+					component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, comEditor);
+					if (component.isExpanded)
+					{
+						// Draw the content of the component
+						comEditor.DrawDefaultInspector();
+					}
+				}
+			}
+
+			// Check if any objects in the cache has been removed from the factory
+			destroyedObjects.Clear();
+			foreach (Object key in objectToEditorCache.Keys)
+			{
+				if (key == null)
+				{
+					destroyedObjects.Add(key);
+				}
+			}
+
+			// Clear outdated cache
+			foreach (Object key in destroyedObjects)
+			{
+				objectToEditorCache.Remove(key);
 			}
 		}
 	}
