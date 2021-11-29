@@ -220,6 +220,6 @@ With this package a new window can be used to observe the runtime model data.  O
 
 (TODO: post a screenshot of the context menu to open the window, and the window itself on runtime.)
 
-The Model Inspector displays a list of models, similar to the Inspector window revealing the Components attached to a GameObject.  This means that any data in the model can be edited in realtime (TODO: or it should; this is a bug, and being worked on,) and one can even run methods in the model that has the `[ContextMenu(string)]` attribute.  Great for debugging and implementing cheats!
+The Model Inspector displays a list of models, exactly like how Unity's own Inspector window reveals the Components attached to a GameObject.  And just like the built-in Inspector, Model Inspector also let's the user edit any data in the model in realtime!  As an added bonus, one can even run methods with the `[ContextMenu(string)]` attribute.  Great for debugging and triggering cheats!
 
 (TODO: post a screenshot of ContextMenu attribute put to good use.)
