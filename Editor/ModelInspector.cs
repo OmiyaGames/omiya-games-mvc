@@ -50,6 +50,10 @@ namespace OmiyaGames.MVC.Editor
 	/// </summary>
 	public class ModelInspector : EditorWindow
 	{
+		const string TabTitle = "Model Inspector";
+		const string IconPath = "Packages/com.omiyagames.mvc/Editor/Icons/model.png";
+		const string Tooltip = "Displays runtime model data";
+
 		UnityEditor.Editor editor = null;
 		bool isFactoryExpanded = false;
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
@@ -65,7 +69,8 @@ namespace OmiyaGames.MVC.Editor
 
 		void OnEnable()
 		{
-			titleContent = new GUIContent("Model Inspector", null, "Displays runtime model data");
+			Texture2D tabIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(IconPath);
+			titleContent = new GUIContent(TabTitle, tabIcon, Tooltip);
 			editor = UnityEditor.Editor.CreateEditor(ModelFactory.Instance.gameObject);
 			objectToEditorCache.Clear();
 		}
@@ -95,6 +100,7 @@ namespace OmiyaGames.MVC.Editor
 
 		void DrawCommonFoldOut()
 		{
+			// FIXME: change this to a proper toolbar like all the other windows.
 			// Start the fold out
 			isFactoryExpanded = EditorGUILayout.BeginFoldoutHeaderGroup(isFactoryExpanded, "Model Factory");
 			if (isFactoryExpanded)
@@ -121,19 +127,20 @@ namespace OmiyaGames.MVC.Editor
 				if ((component != null) && (component.objectReferenceValue is IModel) && ModelFactory.Contains((IModel)component.objectReferenceValue))
 				{
 					// If so, check if an editor for this model already exists
-					if (objectToEditorCache.TryGetValue(component.objectReferenceValue, out var comEditor) == false)
+					if (objectToEditorCache.TryGetValue(component.objectReferenceValue, out var modelEditor) == false)
 					{
 						// If not, construct one, and cache it
-						comEditor = UnityEditor.Editor.CreateEditor(component.objectReferenceValue);
-						objectToEditorCache.Add(component.objectReferenceValue, comEditor);
+						modelEditor = UnityEditor.Editor.CreateEditor(component.objectReferenceValue);
+						objectToEditorCache.Add(component.objectReferenceValue, modelEditor);
 					}
 
 					// Draw the component's title bar
-					component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, comEditor);
+					component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, modelEditor);
 					if (component.isExpanded)
 					{
 						// Draw the content of the component
-						comEditor.DrawDefaultInspector();
+						// FIXME: figure out how to make the serialized fields editable
+						modelEditor.DrawDefaultInspector();
 					}
 				}
 			}
@@ -153,6 +160,7 @@ namespace OmiyaGames.MVC.Editor
 			{
 				objectToEditorCache.Remove(key);
 			}
+			destroyedObjects.Clear();
 		}
 	}
 }
