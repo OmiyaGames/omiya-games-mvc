@@ -1,12 +1,6 @@
-- name: Customizing Package
+- name: Model-View-Controller
   items:
-  - name: Package Files
-    href: customizePackage.md
-  - name: Source Code and Assets
-    href: customizeSource.md
-  - name: Importable Assets
-    href: customizeSamples.md
-  - name: Documentation
-    href: customizeDocumentation.md
+  - name: Model
+    href: model.md
 - name: Change Log
   href: changelog.md
