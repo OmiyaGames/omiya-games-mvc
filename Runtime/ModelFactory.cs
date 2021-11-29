@@ -56,6 +56,8 @@ namespace OmiyaGames.MVC
 	/// <typeparam name="T">Component type.</typeparam>
 	public class ModelFactory : MonoBehaviour
 	{
+		const HideFlags Flags = HideFlags.HideInHierarchy | HideFlags.DontSave;
+
 		struct KeyPair
 		{
 			public KeyPair(Type type, string key)
@@ -90,7 +92,7 @@ namespace OmiyaGames.MVC
 		/// <summary>
 		/// Gets the sole instance of this factory.
 		/// </summary>
-		public static ModelFactory Instance => ComponentSingleton<ModelFactory>.Instance;
+		public static ModelFactory Instance => ComponentSingleton<ModelFactory>.Get(Flags);
 		/// <summary>
 		/// Gets all the created models. Order is not guaranteed.
 		/// </summary>

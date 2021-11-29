@@ -139,7 +139,6 @@ namespace OmiyaGames.MVC.Editor
 					if (component.isExpanded)
 					{
 						// Draw the content of the component
-						// FIXME: figure out how to make the serialized fields editable
 						modelEditor.DrawDefaultInspector();
 					}
 				}
