@@ -1,8 +1,10 @@
 # Model
 
-Models in the Model-View-Controller code pattern are scripts responsible for storing and organizing data.  Data contained in a model script is later manipulated by the controller scripts, while the view scripts uses it as reference to update its display.  In this MVC package, models typically variables, delegates, and occasionally helper methods/properties with the `[ContextMenu("")]` attribute, which can be used in the Model Inspector window.
+Models in the Model-View-Controller code pattern are scripts responsible for storing and organizing data.  Data contained in a model script is later manipulated by the [controller](https://omiyagames.github.io/omiya-games-mvc/manual/controller.html) scripts, while the [view](https://omiyagames.github.io/omiya-games-mvc/manual/view.html) scripts uses it as reference to update its display.  In this MVC package, models typically variables, delegates, and occasionally helper methods/properties with the `[ContextMenu("")]` attribute, which can be used in the Model Inspector window.
 
-A number of helper scripts has been created to help enforce this pattern.  First, the `Model` script is an abstract class one can extend to create a custom model.  The `ModelFactory.Create<IModel>()` can be used to create a new model, while `ModelFactory.Get<IModel>()` retrieves an existing one.  Finally, a helper window, Model Inspector, can be opened to observe while the game is playing what models have been created, what data they contain, and even edit them.
+A number of helper scripts has been created to help enforce this pattern.  First, the `Model` script is an abstract class one can extend to create a custom model.  The `ModelFactory.Create<IModel>()` can be used to create a new model, while `ModelFactory.Get<IModel>()` retrieves an existing one.  Finally, a helper window, [Model Inspector](#model-inspector), can be opened to observe while the game is playing what models have been created, what data they contain, and even edit them.
+
+![Model Inspector Preview](https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png)
 
 ## `Model` Abstract Class
 
@@ -12,22 +14,19 @@ A number of helper scripts has been created to help enforce this pattern.  First
 using OmiyaGames.MVC;
 using UnityEngine;
 
-namespace Game
+public class CustomModel : Model
 {
-	public class CustomModel : Model
+	// Serialized member variable
+	public string text = "Testing!";
+
+	// Delegate for the controller to define
+	public Controller.EventBase<string> ChangeText;
+
+	// Context Menu method, usually for implementing cheats
+	[ContextMenu("Log Text")]
+	public void LogText()
 	{
-		// Serialized member variable
-		public string text = "Testing!";
-
-		// Delegate for the controller to define
-		public Controller.EventBase<string> ChangeText;
-
-		// Context Menu method, usually for implementing cheats
-		[ContextMenu("Log Text")]
-		public void LogText()
-		{
-			Debug.Log(text);
-		}
+		Debug.Log(text);
 	}
 }
 ```
@@ -75,32 +74,29 @@ public class CustomModel : Rigidbody, IModel
 using OmiyaGames.MVC;
 using UnityEngine;
 
-namespace Game
+public class CustomController : MonoBehaviour
 {
-	public class CustomController : MonoBehaviour
+	CustomModel model;
+
+	[SerializeField]
+	string firstText = "First!";
+
+	// Using Awake() so model is created before Start()
+	void Awake()
 	{
-		CustomModel model;
+		// Create the CustomModel
+		model = ModelFactory.Create<CustomModel>();
 
-		[SerializeField]
-		string firstText = "First!";
+		// Setup initial data of the model
+		model.text = firstText;
+		model.ChangeText = (source, newText) => model.text = newText;
+	}
 
-		// Using Awake() so model is created before Start()
-		void Awake()
-		{
-			// Create the CustomModel
-			model = ModelFactory.Create<CustomModel>();
-
-			// Setup initial data of the model
-			model.text = firstText;
-			model.ChangeText = (source, newText) => model.text = newText;
-		}
-
-		void OnDestroy()
-		{
-			// (Optional) Destroy the CustomModel
-			ModelFactory.Release<CustomModel>();
-			model = null;
-		}
+	void OnDestroy()
+	{
+		// (Optional) Destroy the CustomModel
+		ModelFactory.Release<CustomModel>();
+		model = null;
 	}
 }
 ```
@@ -112,34 +108,31 @@ using OmiyaGames.MVC;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game
+public class CustomView : MonoBehaviour
 {
-	public class CustomView : MonoBehaviour
+	CustomModel model;
+
+	[SerializeField]
+	TextInput input;
+
+	void Start()
 	{
-		CustomModel model;
+		// Retrieve the CustomModel
+		// Note: if ModelFactory.Create<CustomModel>() hasn't been called yet,
+		// this line *will* throw an exception!
+		model = ModelFactory.Get<CustomModel>();
 
-		[SerializeField]
-		TextInput input;
+		// Update text input value
+		input.text = model.text;
+	}
 
-		void Start()
+	// Called by the submit button
+	public void OnSubmitClicked()
+	{
+		// Let the controller define the behavior of this submit button
+		if(model != null)
 		{
-			// Retrieve the CustomModel
-			// Note: if ModelFactory.Create<CustomModel>() hasn't been called yet,
-			// this line *will* throw an exception!
-			model = ModelFactory.Get<CustomModel>();
-
-			// Update text input value
-			input.text = model.text;
-		}
-
-		// Called by the submit button
-		public void OnSubmitClicked()
-		{
-			// Let the controller define the behavior of this submit button
-			if(model != null)
-			{
-				model.ChangeText?.Invoke(this, input.text);
-			}
+			model.ChangeText?.Invoke(this, input.text);
 		}
 	}
 }
@@ -218,8 +211,8 @@ public class CustomView : MonoBehaviour
 
 With this package a new window can be used to observe the runtime model data.  One can simply access this by clicking on "Window -> Omiya Games -> Model Inspector."
 
-(TODO: post a screenshot of the context menu to open the window, and the window itself on runtime.)
+![Context Menu to Open Mode Inspector](https://omiyagames.github.io/omiya-games-mvc/resources/contextMenuModelInspector.png)
 
 The Model Inspector displays a list of models, exactly like how Unity's own Inspector window reveals the Components attached to a GameObject.  And just like the built-in Inspector, Model Inspector also let's the user edit any data in the model in realtime!  As an added bonus, one can even run methods with the `[ContextMenu(string)]` attribute.  Great for debugging and triggering cheats!
 
-(TODO: post a screenshot of ContextMenu attribute put to good use.)
+![Model Inspector Preview](https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png)

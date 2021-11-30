@@ -196,6 +196,7 @@ namespace OmiyaGames.MVC.Editor
 					{
 						// Draw the content of the component
 						modelEditor.DrawDefaultInspector();
+						EditorGUILayout.Space();
 					}
 				}
 			}
