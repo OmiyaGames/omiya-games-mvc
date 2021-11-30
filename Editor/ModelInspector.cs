@@ -55,7 +55,7 @@ namespace OmiyaGames.MVC.Editor
 		const string Tooltip = "Displays runtime model data";
 
 		UnityEditor.Editor editor = null;
-		bool isFactoryExpanded = false;
+		string searchString;
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
 		readonly List<Object> destroyedObjects = new List<Object>();
 
@@ -67,11 +67,13 @@ namespace OmiyaGames.MVC.Editor
 			window.Show();
 		}
 
+		#region Unity Events
 		void OnEnable()
 		{
 			Texture2D tabIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(IconPath);
 			titleContent = new GUIContent(TabTitle, tabIcon, Tooltip);
-			editor = UnityEditor.Editor.CreateEditor(ModelFactory.Instance.gameObject);
+
+			editor = null;
 			objectToEditorCache.Clear();
 		}
 
@@ -80,12 +82,30 @@ namespace OmiyaGames.MVC.Editor
 			// Only draw the following if app is playing
 			if (Application.isPlaying == false)
 			{
+				// If not, draw placeholder message
+				DrawDisabledToolbar();
 				EditorGUILayout.HelpBox("Play the game to see runtime data!", MessageType.Info);
 				return;
 			}
 
-			// Draw any common actions
-			DrawCommonFoldOut();
+			// Check if the editor needs to be generated for the ModelFactory
+			if (editor == null)
+			{
+				// Make sure a ModelFactory exists
+				if (ModelFactory.Instance == null)
+				{
+					// If not, draw placeholder message
+					DrawDisabledToolbar();
+					EditorGUILayout.HelpBox("Unable to retrieve an instance of the Model Factory", MessageType.Warning);
+					return;
+				}
+
+				// Generate an editor to the gameobject
+				editor = UnityEditor.Editor.CreateEditor(ModelFactory.Instance.gameObject);
+			}
+
+			// Draw the toolbar
+			DrawToolbar();
 
 			// Update the factory gameobject to its latest settings
 			SerializedObject factory = editor.serializedObject;
@@ -97,23 +117,50 @@ namespace OmiyaGames.MVC.Editor
 			// Record any changes
 			factory.ApplyModifiedProperties();
 		}
+		#endregion
 
-		void DrawCommonFoldOut()
+		void DrawDisabledToolbar()
 		{
-			// FIXME: change this to a proper toolbar like all the other windows.
-			// Start the fold out
-			isFactoryExpanded = EditorGUILayout.BeginFoldoutHeaderGroup(isFactoryExpanded, "Model Factory");
-			if (isFactoryExpanded)
+			// Draw the toolbar
+			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
+			{
+				// Set whether controls in the toolbar should be enabled or not
+				bool wasEnabled = GUI.enabled;
+				GUI.enabled = false;
+
+				// Draw the reset button
+				DrawClearButton();
+
+				// Pad the rest of the toolbar with spaces
+				GUILayout.FlexibleSpace();
+
+				// Reset enabled
+				GUI.enabled = wasEnabled;
+			}
+		}
+
+		void DrawToolbar()
+		{
+			// Draw the toolbar
+			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
 			{
 				// Draw the reset button
-				if (GUILayout.Button("Destroy All Models") == true)
+				if (DrawClearButton() == true)
 				{
-					// Call reset on click
+					// Reset everything
 					ModelFactory.Reset();
+					objectToEditorCache.Clear();
+
+					// Create a fresh new editor from a fresh new ModelFactory
+					editor = UnityEditor.Editor.CreateEditor(ModelFactory.Instance.gameObject);
 				}
+
+				// Pad the rest of the toolbar with spaces
+				GUILayout.FlexibleSpace();
 			}
-			EditorGUILayout.EndFoldoutHeaderGroup();
 		}
+
+		bool DrawClearButton() => GUILayout.Button("Clear", EditorStyles.toolbarButton, GUILayout.Width(50f));
 
 		void DrawAllModels(SerializedProperty allComponents)
 		{
