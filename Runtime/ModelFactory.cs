@@ -47,13 +47,9 @@ namespace OmiyaGames.MVC
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// Use this class to get a static instance of a component.
-	/// Mainly used to have a default instance.
+	/// Factory that creates and maintains static instances of
+	/// <seealso cref="IModel"/>s.
 	/// </summary>
-	/// <remarks>
-	/// Code from Unity's Core RenderPipeline package (<c>ComponentSingleton<TType></c>.)
-	/// </remarks>
-	/// <typeparam name="T">Component type.</typeparam>
 	public class ModelFactory : MonoBehaviour
 	{
 		const HideFlags Flags = HideFlags.HideInHierarchy | HideFlags.DontSave;
@@ -92,7 +88,7 @@ namespace OmiyaGames.MVC
 		/// <summary>
 		/// Gets the sole instance of this factory.
 		/// </summary>
-		public static ModelFactory Instance => ComponentSingleton<ModelFactory>.Get(Flags);
+		public static ModelFactory Instance => Application.isPlaying ? ComponentSingleton<ModelFactory>.Get(Flags) : null;
 		/// <summary>
 		/// Gets all the created models. Order is not guaranteed.
 		/// </summary>
