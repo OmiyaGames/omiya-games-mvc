@@ -54,8 +54,9 @@ namespace OmiyaGames.MVC.Editor
 		const string IconPath = "Packages/com.omiyagames.mvc/Editor/Icons/model.png";
 		const string Tooltip = "Displays runtime model data";
 
+		static readonly Vector2 MinSize =  new Vector2(300f, 300f);
 		UnityEditor.Editor editor = null;
-		string searchString;
+		Vector2 scrollPosition;
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
 		readonly List<Object> destroyedObjects = new List<Object>();
 
@@ -64,6 +65,7 @@ namespace OmiyaGames.MVC.Editor
 		static void Initialize()
 		{
 			ModelInspector window = GetWindow<ModelInspector>("Model Inspector", true);
+			window.minSize = MinSize;
 			window.Show();
 		}
 
@@ -111,8 +113,15 @@ namespace OmiyaGames.MVC.Editor
 			SerializedObject factory = editor.serializedObject;
 			factory.Update();
 
-			// Draw the models in the factory
-			DrawAllModels(factory.FindProperty("m_Component"));
+			// Start scrolling area
+			using (var scope = new EditorGUILayout.ScrollViewScope(scrollPosition, GUIStyle.none, GUI.skin.verticalScrollbar))
+			{
+				// Draw the models in the factory
+				DrawAllModels(factory.FindProperty("m_Component"));
+
+				// Update scroll position
+				scrollPosition = scope.scrollPosition;
+			}
 
 			// Record any changes
 			factory.ApplyModifiedProperties();
