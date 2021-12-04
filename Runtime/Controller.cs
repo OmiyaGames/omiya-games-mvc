@@ -50,8 +50,30 @@ namespace OmiyaGames.MVC
 	/// </summary>
 	public static class Controller
 	{
+		/// <summary>
+		/// A definition for event delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
 		public delegate void EventBase(object source);
+		/// <summary>
+		/// A definition for event delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Argument's type.
+		/// Classes extending <seealso cref="System.EventArgs"/> recommended.
+		/// </typeparam>
 		public delegate void EventBase<T>(object source, T arg);
+		/// <summary>
+		/// A definition for event delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="args">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Arguments' type.
+		/// Classes extending <seealso cref="System.EventArgs"/> recommended.
+		/// </typeparam>
 		public delegate void EventBaseMulti<T>(object source, params T[] args);
 	}
 }

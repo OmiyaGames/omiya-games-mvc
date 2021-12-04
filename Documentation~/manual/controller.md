@@ -59,6 +59,21 @@ public class CustomController : MonoBehaviour
 }
 ```
 
+## Helper Delegates
+
+The `Controller` static class contains a few useful delegate templates defined:
+
+```cs
+public static class Controller
+{
+	public delegate void EventBase(object source);
+	public delegate void EventBase<T>(object source, T arg);
+	public delegate void EventBaseMulti<T>(object source, params T[] args);
+}
+```
+
+These delegates can be used for listening to events.  The `source` is the object calling the function, and `arg(s)` is the supplied argument (recommended: have `arg's` type be a class that extends `System.EventArgs`.)
+
 ## Differences From Views
 
 The fact that both controllers and views can change a model's delegates makes the differences between views and controllers rather blurry.  While it will be up to the developers of the project to establish their own boundaries on what views and controllers can and can't do, this documenter recommends the following rule:
