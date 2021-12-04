@@ -2,7 +2,9 @@
     "name": "OmiyaGames.MVC.Editor",
     "rootNamespace": "OmiyaGames.MVC.Editor",
     "references": [
-        "OmiyaGames.Template"
+        "OmiyaGames",
+        "OmiyaGames.Global",
+        "OmiyaGames.MVC"
     ],
     "includePlatforms": [
         "Editor"

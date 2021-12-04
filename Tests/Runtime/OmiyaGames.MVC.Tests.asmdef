@@ -2,9 +2,9 @@
     "name": "OmiyaGames.MVC.Tests",
     "rootNamespace": "OmiyaGames.MVC.Tests",
     "references": [
-        "OmiyaGames.Template",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "OmiyaGames.MVC"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

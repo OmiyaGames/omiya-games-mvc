@@ -1,92 +1,117 @@
-# [Omiya Games](https://www.omiyagames.com/) - Template Unity Package
+# [Omiya Games](https://omiyagames.com) - MVC
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I51KS8F)
+[![Ko-fi Badge](https://img.shields.io/badge/donate-ko--fi-29abe0.svg?logo=ko-fi)](https://ko-fi.com/I3I51KS8F) [![License Badge](https://img.shields.io/github/license/OmiyaGames/omiya-games-mvc)](https://github.com/OmiyaGames/omiya-games-mvc/blob/master/LICENSE.md)
 
-![Unity Package Manager](https://omiyagames.github.io/template-unity-package/resources/preview.png)
+The **Model-View-Controller (MVC)** framework is a common way of organizing code for GUI applications.  This package implements a number of helper scripts to help enforce this framework for a Unity project.  Currently, this package is in development stages, and may change over time.
 
-**Template Unity Package** is a Github template [Omiya Games](https://www.omiyagames.com/) uses to start a new Unity package.  Developers intending to utilize this project as a starting point to develop their own package should [visit the Github page](https://github.com/OmiyaGames/template-unity-package) and:
+This MVC implementation runs with the philosophy that [**Models**](https://omiyagames.github.io/omiya-games-mvc/manual/model.html) contains data, delegates, and `[ContextMenu]` methods for implementing quick cheats.  [**Controllers**](https://omiyagames.github.io/omiya-games-mvc/manual/controller.html), meanwhile, creates and sets up models with initial data, and assigning functions to delegates that manipulates the model's data.  Finally, [**Views**](https://omiyagames.github.io/omiya-games-mvc/manual/view.html) grabs instances of models to update visuals (e.g. UI) in-game based off of model's data, call the model's delegate, and listen to them like events.
 
-- If they plan on creating a new online repository on Github directly, click on the green "Use this template" button to get started, or
-- Click the "Releases" link, and download the latest archive as zip or gzip file.
+With this organization, it's becomes possible to display in-game data in realtime through the use of the Model Inspector:
 
-## Structure
-
-The project follows [Unity's recommend file and folder format](https://docs.unity3d.com/Manual/cus-layout.html), albeit with a few changes:
-
-```
-<root>
-  ├── package.json
-  ├── README.md
-  ├── CHANGELOG.md
-  ├── LICENSE.md
-  ├── THIRD PARTY NOTICES.md
-  ├── .gitignore
-  ├── Runtime
-  │   ├── OmiyaGames.Template.asmdef
-  │   └── RuntimeExample.cs
-  ├── Editor
-  │   ├── OmiyaGames.Template.Editor.asmdef
-  │   └── EditorExample.cs
-  └── Tests
-  │   ├── Runtime
-  │   │   ├── OmiyaGames.Template.Tests.asmdef
-  │   │   └── RuntimeExampleTest.cs
-  │   └── Editor
-  │       ├── OmiyaGames.Template.Editor.Tests.asmdef
-  │       └── EditorExampleTest.cs
-  ├── Samples~
-  │   └── Example1
-  │       └── Example.txt
-  ├── Documentation~
-  |   ├── index.md
-  |   ├── Doxyfile
-  |   ├── docfx.json
-  |   ├── toc.yml
-  |   ├── filterConfig.yml
-  |   ├── manual
-  |   |   ├── toc.yml
-  |   |   ├── customizeDocumentation.md
-  |   |   ├── customizePackage.md
-  |   |   ├── customizeSamples.md
-  |   |   └── README.md
-  |   └── resources
-  |       ├── preview.png
-  |       └── README.md
-  └── .github
-      ├── FUNDING.yml
-      ├── ISSUE_TEMPLATE
-      |   ├── bug_report.md
-      |   ├── feature_request.md
-      |   ├── documentation-template.md
-      |   └── research_template.md
-      └── workflows
-          ├── documentation.yml
-          └── mirror.yml
-```
-
-## Common Text Formats
-
-Note that this sprawling list of files contains a large number of common, human-readable (i.e. non-code, data-storing) text formats.  If some of these file extensions are unfamiliar, the following resources describes how to edit and format the most common text files used in this project:
-
-- [JSON (`*.json, *.asmdef`)](https://www.json.org/json-en.html)
-    - Although the [Wikipedia page](https://en.wikipedia.org/wiki/JSON#Data_types_and_syntax) might be easier understand.
-- [YAML (`*.yml`)](https://yaml.org/spec/1.2/spec.html#Preview)
-    - Again, the [Wikipedia page](https://en.wikipedia.org/wiki/YAML#Syntax).
-- [Markdown (`*.md`)](https://www.markdownguide.org/getting-started/)
-    - They also provide [a cheatsheet](https://www.markdownguide.org/cheat-sheet)!
-- [Bonus: `.gitignore`](https://git-scm.com/docs/gitignore#_pattern_format)
+[![Model Inspector Preview](https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png)](https://omiyagames.github.io/omiya-games-mvc/manual/model.html#model-inspector)
 
 ## About the Manual
 
-As many of these files are intended to be edited and/or renamed, this manual has been split up into three parts.  The links below briefly covers how to update this package's files for your own package development.
+Each part of the MVC framework are described in more thorough details in the links below:
 
-- [Customizing Package Files](https://omiyagames.github.io/template-unity-package/manual/customizePackage.html)
-- [Adding Source Code and Assets](https://omiyagames.github.io/template-unity-package/manual/customizeSource.html)
-- [Adding Importable Assets](https://omiyagames.github.io/template-unity-package/manual/customizeSamples.html)
-- [Customizing Documentation](https://omiyagames.github.io/template-unity-package/manual/customizeDocumentation.html)
+- [Model](https://omiyagames.github.io/omiya-games-mvc/manual/model.html)
+- [View](https://omiyagames.github.io/omiya-games-mvc/manual/view.html)
+- [Controllers](https://omiyagames.github.io/omiya-games-mvc/manual/controller.html)
 
-As an aside, [the author](https://github.com/japtar10101) of this manual provided a more thorough guide with graphics on their own blog: [*How to Split Up an Existing Unity Git Project into Smaller Unity Packages*](https://www.taroomiya.com/2020/04/29/how-to-split-up-an-existing-unity-git-project-into-smaller-unity-packages/).  It's worth reviewing if the manual seems a little sparse.  Finally, changes in the project is documented under the [change log page](https://omiyagames.github.io/template-unity-package/manual/changelog.html).
+## Sample Code
+
+Here's an example of reading a text input entry from a UI:
+
+### [Model](https://omiyagames.github.io/omiya-games-mvc/manual/model.html)
+
+```cs
+using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomModel : Model
+{
+	// Serialized member variable
+	public string text = "Testing!";
+
+	// Delegate for the controller to define
+	public Controller.EventBase<string> ChangeText;
+
+	// Context Menu method, usually for implementing cheats
+	[ContextMenu("Log Text")]
+	public void LogText()
+	{
+		Debug.Log(text);
+	}
+}
+```
+
+### [View](https://omiyagames.github.io/omiya-games-mvc/manual/view.html)
+
+```cs
+using OmiyaGames.MVC;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CustomView : MonoBehaviour
+{
+	CustomModel model;
+
+	[SerializeField]
+	TextInput input;
+
+	void Start()
+	{
+		// Retrieve the CustomModel
+		// Note: if ModelFactory.Create<CustomModel>() hasn't been called yet,
+		// this line *will* throw an exception!
+		model = ModelFactory.Get<CustomModel>();
+
+		// Update text input value
+		input.text = model.text;
+	}
+
+	// Called by the submit button
+	public void OnSubmitClicked()
+	{
+		// Call ChangeText if it's defined
+		model.ChangeText?.Invoke(this, input.text);
+	}
+}
+```
+
+### [Controller](https://omiyagames.github.io/omiya-games-mvc/manual/controller.html)
+
+```cs
+using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomController : MonoBehaviour
+{
+	CustomModel model;
+
+	[SerializeField]
+	string firstText = "First!";
+
+	// Using Awake() so model is created before Start()
+	void Awake()
+	{
+		// Create the CustomModel
+		model = ModelFactory.Create<CustomModel>();
+
+		// Setup initial data of the model
+		model.text = firstText;
+		model.ChangeText = (source, newText) => model.text = newText;
+	}
+
+	void OnDestroy()
+	{
+		// (Optional) Destroy the CustomModel
+		ModelFactory.Release<CustomModel>();
+		model = null;
+	}
+}
+```
 
 ## LICENSE
 
-Overall package is licensed under [MIT](https://github.com/OmiyaGames/template-unity-package/blob/master/LICENSE.md), unless otherwise noted in the [3rd party licenses](https://github.com/OmiyaGames/template-unity-package/blob/master/THIRD%20PARTY%20NOTICES.md) file and/or source code.
+Overall package is licensed under [MIT](https://github.com/OmiyaGames/omiya-games-mvc/blob/master/LICENSE.md), unless otherwise noted in the [3rd party licenses](https://github.com/OmiyaGames/omiya-games-mvc/blob/master/THIRD%20PARTY%20NOTICES.md) file and/or source code.
