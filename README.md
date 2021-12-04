@@ -1,6 +1,6 @@
 # [Omiya Games](https://omiyagames.com) - MVC
 
-[![License Badge](https://img.shields.io/github/license/OmiyaGames/omiya-games-mvc)](/LICENSE.md) [![MVC Package documentation](https://github.com/OmiyaGames/omiya-games-mvc/workflows/Host%20DocFX%20Documentation/badge.svg)](https://omiyagames.github.io/omiya-games-mvc/) [![Ko-fi Badge](https://img.shields.io/badge/donate-ko--fi-29abe0.svg?logo=ko-fi)](https://ko-fi.com/I3I51KS8F)
+[![MVC Package documentation](https://github.com/OmiyaGames/omiya-games-mvc/workflows/Host%20DocFX%20Documentation/badge.svg)](https://omiyagames.github.io/omiya-games-mvc/) [![Ko-fi Badge](https://img.shields.io/badge/donate-ko--fi-29abe0.svg?logo=ko-fi)](https://ko-fi.com/I3I51KS8F) [![License Badge](https://img.shields.io/github/license/OmiyaGames/omiya-games-mvc)](/LICENSE.md)
 
 The **Model-View-Controller (MVC)** framework is a common way of organizing code for GUI applications.  This package implements a number of helper scripts to help enforce this framework for a Unity project.  Currently, this package is in development stages, and may change over time.
 
