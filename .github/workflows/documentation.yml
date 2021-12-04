@@ -8,9 +8,6 @@ on:
 jobs:
   # Build the documentation
   build:
-    if:    # Adding if-statement to prevent this job from running on packages using this template.
-           # If you want to run this documentation job, just take out the if-field and value below.
-      github.repository == 'OmiyaGames/omiya-games-mvc'
     runs-on: windows-latest # Required by DocFX
     steps:
       - name: Checkout
