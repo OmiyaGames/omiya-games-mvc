@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Model | Template Unity Package documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Model | Template Unity Package documentation ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="model">Model</h1>
+
+<p>Models in the Model-View-Controller code pattern are scripts responsible for storing and organizing data.  Data contained in a model script is later manipulated by the <a href="https://omiyagames.github.io/omiya-games-mvc/manual/controller.html">controller</a> scripts, while the <a href="https://omiyagames.github.io/omiya-games-mvc/manual/view.html">view</a> scripts uses it as reference to update its display.  In this MVC package, models typically variables, delegates, and occasionally helper methods/properties with the <code>[ContextMenu(&quot;&quot;)]</code> attribute, which can be used in the Model Inspector window.</p>
+<p>A number of helper scripts has been created to help enforce this pattern.  First, the <code>Model</code> script is an abstract class one can extend to create a custom model.  The <code>ModelFactory.Create&lt;IModel&gt;()</code> can be used to create a new model, while <code>ModelFactory.Get&lt;IModel&gt;()</code> retrieves an existing one.  Finally, a helper window, <a href="#model-inspector">Model Inspector</a>, can be opened to observe while the game is playing what models have been created, what data they contain, and even edit them.</p>
+<p><img src="https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png" alt="Model Inspector Preview"></p>
+<h2 id="model-abstract-class"><code>Model</code> Abstract Class</h2>
+<p><code>Model</code> is a base class intended to be extended so that <code>ModelFactory</code> can create this instance.  As mentioned prior, the programmer is expected to create a concrete class with serialized/public variables, delegates, and occasionally helper methods/properties with the <code>[ContextMenu(&quot;&quot;)]</code> attribute.  Note that <code>Model</code> already has a read-only property called <code>Key</code>, which returns an optional string the model&#39;s instance is associated with in the <code>ModelFactory</code>&#39;s dictionary.  Below is an example of how one would write a custom model:</p>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomModel : Model
+{
+    // Serialized member variable
+    public string text = &quot;Testing!&quot;;
+
+    // Delegate for the controller to define
+    public Controller.EventBase&lt;string&gt; ChangeText;
+
+    // Context Menu method, usually for implementing cheats
+    [ContextMenu(&quot;Log Text&quot;)]
+    public void LogText()
+    {
+        Debug.Log(text);
+    }
+}
+</code></pre><p>Despite being a <code>MonoBehaviour</code>, common Unity functions like <code>Start()</code> and <code>Update()</code> will not be called in a <code>Model</code>, as the GameObject it&#39;s attached to, <code>ModelFactory</code>, is not activated.  To mitigate this, there is a virtual method, <code>OnCreate(ModelFactory)</code>, one can override to initialize any member variables as soon as <code>ModelFactory.Create&lt;Model&gt;()</code> is called.</p>
+<pre><code class="lang-cs">public class CustomModel : Model
+{
+    public string text;
+
+    protected override void OnCreate(ModelFactory source)
+    {
+        text = &quot;Testing!&quot;;
+    }
+}
+</code></pre><h3 id="imodel-interface"><code>IModel</code> Interface</h3>
+<p>For added flexibility, <code>ModelFactory.Get&lt;Model&gt;()</code> can also create any components implementing the <code>IModel</code> interface.  When defining a custom model this way, note that the first argument of method <code>void OnCreate(string, ModelFactory)</code>, which the interface requires the script to define, should be stored and returned by the other mandatory getter property, <code>string Key</code>.  As a demonstration:</p>
+<pre><code class="lang-cs">public class CustomModel : Rigidbody, IModel
+{
+    // Store the key from OnCreate!
+    string key;
+
+    /// &lt;inheritdoc/&gt;
+    public void OnCreate(string key, ModelFactory source)
+    {
+        this.key = key;
+    }
+
+    /// &lt;inheritdoc/&gt;
+    public string Key =&gt; key;
+}
+</code></pre><h2 id="modelfactory"><code>ModelFactory</code></h2>
+<p><code>ModelFactory</code> is a singleton script that automatically generates a deactivated GameObject hidden from the Hierarchy window.  It&#39;s recommended that a controller script is used to attach a model to this singleton GameObject via <code>ModelFactory.Create&lt;CustomModel&gt;()</code>.  A typical controller might look as follows:</p>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomController : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    string firstText = &quot;First!&quot;;
+
+    // Using Awake() so model is created before Start()
+    void Awake()
+    {
+        // Create the CustomModel
+        model = ModelFactory.Create&lt;CustomModel&gt;();
+
+        // Setup initial data of the model
+        model.text = firstText;
+        model.ChangeText = (source, newText) =&gt; model.text = newText;
+    }
+
+    void OnDestroy()
+    {
+        // (Optional) Destroy the CustomModel
+        ModelFactory.Release&lt;CustomModel&gt;();
+        model = null;
+    }
+}
+</code></pre><p>This can later be retrieved by a view script using <code>ModelFactory.Get&lt;CustomModel&gt;()</code> or <code>ModelFactory.TryGet&lt;CustomModel&gt;(out CustomModel)</code>:</p>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CustomView : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    TextInput input;
+
+    void Start()
+    {
+        // Retrieve the CustomModel
+        // Note: if ModelFactory.Create&lt;CustomModel&gt;() hasn&#39;t been called yet,
+        // this line *will* throw an exception!
+        model = ModelFactory.Get&lt;CustomModel&gt;();
+
+        // Update text input value
+        input.text = model.text;
+    }
+
+    // Called by the submit button
+    public void OnSubmitClicked()
+    {
+        // Let the controller define the behavior of this submit button
+        if(model != null)
+        {
+            model.ChangeText?.Invoke(this, input.text);
+        }
+    }
+}
+</code></pre><h3 id="creating-mulitple-instances-of-the-same-model">Creating Mulitple Instances of the Same Model</h3>
+<p>Note that by default <code>ModelFactory.Create&lt;CustomModel&gt;()</code> does <em>not</em> let you create more than one instance of <code>CustomModel</code>.  To create multiple instances of the same model, a unique <code>key</code> argument must be provided to <code>ModelFactory.Create&lt;CustomModel&gt;(string)</code>:</p>
+<pre><code class="lang-cs">public class CustomController : MonoBehaviour
+{
+    CustomModel[] models;
+
+    [SerializeField]
+    int numModels = 10;
+
+    // Using Awake() so model is created before Start()
+    void Awake()
+    {
+        // Create CustomModels
+        models = new CustomModel[numModels];
+        for(int i = 0; i &lt; numModels; ++i)
+        {
+            models[i] = ModelFactory.Create&lt;CustomModel&gt;(i.ToString());
+            models[i].ChangeText = (source, newText) =&gt; models[i].text = newText;
+        }
+    }
+
+    void OnDestroy()
+    {
+        // (Optional) Destroy all CustomModels
+        for(int i = 0; i &lt; numModels; ++i)
+        {
+            ModelFactory.Release&lt;CustomModel&gt;(i.ToString());
+        }
+        models = null;
+    }
+}
+</code></pre><p>To retrieve a specific instance, of course, the same <code>key</code> needs to be provided for <code>ModelFactory.Get&lt;CustomModel&gt;(string)</code>:</p>
+<pre><code class="lang-cs">public class CustomView : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    int modelIndex = 0;
+    [SerializeField]
+    TextInput input;
+
+    void Start()
+    {
+        // Retrieve the CustomModel
+        model = ModelFactory.Get&lt;CustomModel&gt;(modelIndex.ToString());
+
+        // Update text input value
+        input.text = model.text;
+    }
+
+    // Called by the submit button
+    public void OnSubmitClicked()
+    {
+        // Let the controller define the behavior of this submit button
+        if(model != null)
+        {
+            model.ChangeText?.Invoke(this, input.text);
+        }
+    }
+}
+</code></pre><h2 id="model-inspector">Model Inspector</h2>
+<p>With this package a new window can be used to observe the runtime model data.  One can simply access this by clicking on &quot;Window -&gt; Omiya Games -&gt; Model Inspector.&quot;</p>
+<p><img src="https://omiyagames.github.io/omiya-games-mvc/resources/contextMenuModelInspector.png" alt="Context Menu to Open Mode Inspector"></p>
+<p>The Model Inspector displays a list of models, exactly like how Unity&#39;s own Inspector window reveals the Components attached to a GameObject.  And just like the built-in Inspector, Model Inspector also let&#39;s the user edit any data in the model in realtime!  As an added bonus, one can even run methods with the <code>[ContextMenu(string)]</code> attribute.  Great for debugging and triggering cheats!</p>
+<p><img src="https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png" alt="Model Inspector Preview"></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/main/Documentation~/manual/model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2020 Omiya Games
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

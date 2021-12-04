@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Views | Template Unity Package documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Views | Template Unity Package documentation ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="views">Views</h1>
+
+<p>Views in the Model-View-Controller code pattern are scripts responsible for rendering the data in <a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html">models</a> in a visually-pleasing manner.  Furthermore, views also calls functions defined in <a href="https://omiyagames.github.io/omiya-games-mvc/manual/controller.html">controller</a> to whenever a user interacts with the visuals views render.  In this MVC package, views are &quot;soft&quot; enforced: no interfaces or abstract classes exists to enforce this part of the pattern.  Nonetheless, with the help of <a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html#model-factory"><code>ModelFactory</code></a>, it should be an easy pattern to enforce!</p>
+<h2 id="recommended-convention">Recommended Convention</h2>
+<p>Views are typically <code>MonoBehaviour</code> attached to a scene&#39;s GameObject with at least <code>void Start()</code> method to grab an existing model.  Naturally, the data of this model is read to setup the visuals view scripts are responsible for.  Whenever an event, such as a button click or collision, occurs, views are responsible for calling delegate methods stored in the model.  Obviously, since views needs to manipulate Unity components, they almost always have at least one serialized reference to a scene object:</p>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CustomView : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    TextInput input;
+
+    void Start()
+    {
+        // Retrieve the CustomModel
+        // Note: if ModelFactory.Create&lt;CustomModel&gt;() hasn&#39;t been called yet,
+        // this line *will* throw an exception!
+        model = ModelFactory.Get&lt;CustomModel&gt;();
+
+        // Update text input value
+        input.text = model.text;
+    }
+
+    // Called by the submit button
+    public void OnSubmitClicked()
+    {
+        // Let the controller define the behavior of this submit button
+        if(model != null)
+        {
+            model.ChangeText?.Invoke(this, input.text);
+        }
+    }
+}
+</code></pre><p>Views may also listen to a model&#39;s delegate (like events,) and update visual changes when said delegate gets called:</p>
+<pre><code class="lang-cs">public class CustomView : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    Text loadingPercent;
+
+    void Start()
+    {
+        // Retrieve the CustomModel
+        model = ModelFactory.Get&lt;CustomModel&gt;();
+        model.OnLoading += UpdateLabel;
+
+        // Update label
+        loadingPercent.text = &quot;0%&quot;;
+    }
+
+    void OnDestroy()
+    {
+        // IMPORTANT: stop listening to the OnLoading event
+        if(model != null)
+        {
+            model.OnLoading -= UpdateLabel;
+        }
+    }
+
+    void UpdateLabel()
+    {
+        loadingPercent.text = model.loaded.ToString(&quot;0%&quot;);
+    }
+}
+</code></pre><h2 id="differences-from-controllers">Differences From Controllers</h2>
+<p>The fact that both views and controllers can change a model&#39;s delegates makes the differences between views and controllers rather blurry.  While it will be up to the developers of the project to establish their own boundaries on what views and controllers can and can&#39;t do, this documenter recommends the following rule:</p>
+<ul>
+<li>Controllers should apply behavior to delegates that changes the data in the model.</li>
+<li>Views should <em>not</em> change the model&#39;s data, unless through a delegate that a controller has already defined.</li>
+<li>Views should, instead, apply behavior to delegates that only affects the visuals of the game.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/main/Documentation~/manual/view.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2020 Omiya Games
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

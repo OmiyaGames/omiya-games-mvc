@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Omiya Games - MVC | Template Unity Package documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Omiya Games - MVC | Template Unity Package documentation ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="omiya-gameshttpsomiyagamescom---mvc"><a href="https://omiyagames.com">Omiya Games</a> - MVC</h1>
+
+<p><a href="https://ko-fi.com/I3I51KS8F"><img src="https://img.shields.io/badge/donate-ko--fi-29abe0.svg?logo=ko-fi" alt="Ko-fi Badge"></a> <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/OmiyaGames/omiya-games-mvc" alt="License Badge"></a></p>
+<p>The <strong>Model-View-Controller (MVC)</strong> framework is a common way of organizing code for GUI applications.  This package implements a number of helper scripts to help enforce this framework for a Unity project.  Currently, this package is in development stages, and may change over time.</p>
+<p>This MVC implementation runs with the philosophy that <a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html"><strong>Models</strong></a> contains data, delegates, and <code>[ContextMenu]</code> methods for implementing quick cheats.  <a href="https://omiyagames.github.io/omiya-games-mvc/manual/controller.html"><strong>Controllers</strong></a>, meanwhile, creates and sets up models with initial data, and assigning functions to delegates that manipulates the model&#39;s data.  Finally, <a href="https://omiyagames.github.io/omiya-games-mvc/manual/view.html"><strong>Views</strong></a> grabs instances of models to update visuals (e.g. UI) in-game based off of model&#39;s data, call the model&#39;s delegate, and listen to them like events.</p>
+<p>With this organization, it&#39;s becomes possible to display in-game data in realtime through the use of the Model Inspector:</p>
+<p><a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html#model-inspector"><img src="https://omiyagames.github.io/omiya-games-mvc/resources/modelInspectorPreview.png" alt="Model Inspector Preview"></a></p>
+<h2 id="about-the-manual">About the Manual</h2>
+<p>Each part of the MVC framework are described in more thorough details in the links below:</p>
+<ul>
+<li><a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html">Model</a></li>
+<li><a href="https://omiyagames.github.io/omiya-games-mvc/manual/view.html">View</a></li>
+<li><a href="https://omiyagames.github.io/omiya-games-mvc/manual/controller.html">Controllers</a></li>
+</ul>
+<h2 id="sample-code">Sample Code</h2>
+<p>Here&#39;s an example of reading a text input entry from a UI:</p>
+<h3 id="modelhttpsomiyagamesgithubioomiya-games-mvcmanualmodelhtml"><a href="https://omiyagames.github.io/omiya-games-mvc/manual/model.html">Model</a></h3>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomModel : Model
+{
+    // Serialized member variable
+    public string text = &quot;Testing!&quot;;
+
+    // Delegate for the controller to define
+    public Controller.EventBase&lt;string&gt; ChangeText;
+
+    // Context Menu method, usually for implementing cheats
+    [ContextMenu(&quot;Log Text&quot;)]
+    public void LogText()
+    {
+        Debug.Log(text);
+    }
+}
+</code></pre><h3 id="viewhttpsomiyagamesgithubioomiya-games-mvcmanualviewhtml"><a href="https://omiyagames.github.io/omiya-games-mvc/manual/view.html">View</a></h3>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CustomView : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    TextInput input;
+
+    void Start()
+    {
+        // Retrieve the CustomModel
+        // Note: if ModelFactory.Create&lt;CustomModel&gt;() hasn&#39;t been called yet,
+        // this line *will* throw an exception!
+        model = ModelFactory.Get&lt;CustomModel&gt;();
+
+        // Update text input value
+        input.text = model.text;
+    }
+
+    // Called by the submit button
+    public void OnSubmitClicked()
+    {
+        // Call ChangeText if it&#39;s defined
+        model.ChangeText?.Invoke(this, input.text);
+    }
+}
+</code></pre><h3 id="controllerhttpsomiyagamesgithubioomiya-games-mvcmanualcontrollerhtml"><a href="https://omiyagames.github.io/omiya-games-mvc/manual/controller.html">Controller</a></h3>
+<pre><code class="lang-cs">using OmiyaGames.MVC;
+using UnityEngine;
+
+public class CustomController : MonoBehaviour
+{
+    CustomModel model;
+
+    [SerializeField]
+    string firstText = &quot;First!&quot;;
+
+    // Using Awake() so model is created before Start()
+    void Awake()
+    {
+        // Create the CustomModel
+        model = ModelFactory.Create&lt;CustomModel&gt;();
+
+        // Setup initial data of the model
+        model.text = firstText;
+        model.ChangeText = (source, newText) =&gt; model.text = newText;
+    }
+
+    void OnDestroy()
+    {
+        // (Optional) Destroy the CustomModel
+        ModelFactory.Release&lt;CustomModel&gt;();
+        model = null;
+    }
+}
+</code></pre><h2 id="license">LICENSE</h2>
+<p>Overall package is licensed under <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/master/LICENSE.md">MIT</a>, unless otherwise noted in the <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/master/THIRD%20PARTY%20NOTICES.md">3rd party licenses</a> file and/or source code.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/OmiyaGames/omiya-games-mvc/blob/main/Documentation~/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2020 Omiya Games
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
