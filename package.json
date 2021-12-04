@@ -1,10 +1,10 @@
 {
   "name": "com.omiyagames.mvc",
   "displayName": "Omiya Games - MVC",
-  "version": "0.1.0-preview.1",
+  "version": "0.1.0-exp",
   "unity": "2021.2",
-  "unityRelease": "4f1",
-  "description": "A Model-View-Controller implementation.",
+  "unityRelease": "5f1",
+  "description": "A Model-View-Controller framework implementation by Omiya Games.",
   "category": "Tool",
   "type": "library",
   "license": "MIT",
