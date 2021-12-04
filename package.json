@@ -5,7 +5,7 @@
   "unity": "2021.2",
   "unityRelease": "5f1",
   "description": "A Model-View-Controller framework implementation by Omiya Games.",
-  "category": "Tool",
+  "category": "Library",
   "type": "library",
   "license": "MIT",
   "author": {
