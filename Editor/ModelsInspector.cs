@@ -57,6 +57,7 @@ namespace OmiyaGames.MVC.Editor
 
 		static readonly Vector2 MinSize =  new Vector2(300f, 300f);
 		UnityEditor.Editor editor = null;
+		bool allowLazyModelLoading = true;
 		Vector2 scrollPosition;
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
 		readonly List<Object> destroyedObjects = new List<Object>();
@@ -134,6 +135,9 @@ namespace OmiyaGames.MVC.Editor
 			// Draw the toolbar
 			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
 			{
+				// Draw a toggle for lazy-loading models
+				DrawLazyLoadModelsToggle();
+
 				// Set whether controls in the toolbar should be enabled or not
 				bool wasEnabled = GUI.enabled;
 				GUI.enabled = false;
@@ -141,11 +145,11 @@ namespace OmiyaGames.MVC.Editor
 				// Draw the reset button
 				DrawClearButton();
 
-				// Pad the rest of the toolbar with spaces
-				GUILayout.FlexibleSpace();
-
 				// Reset enabled
 				GUI.enabled = wasEnabled;
+
+				// Pad the rest of the toolbar with spaces
+				GUILayout.FlexibleSpace();
 			}
 		}
 
@@ -154,6 +158,9 @@ namespace OmiyaGames.MVC.Editor
 			// Draw the toolbar
 			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
 			{
+				// Draw a toggle for lazy-loading models
+				DrawLazyLoadModelsToggle();
+
 				// Draw the reset button
 				if (DrawClearButton() == true)
 				{
@@ -171,6 +178,7 @@ namespace OmiyaGames.MVC.Editor
 		}
 
 		bool DrawClearButton() => GUILayout.Button("Clear", EditorStyles.toolbarButton, GUILayout.Width(50f));
+		void DrawLazyLoadModelsToggle() => allowLazyModelLoading = EditorGUILayout.ToggleLeft("Always Generate Models", allowLazyModelLoading, GUILayout.Width(160f));
 
 		void DrawAllModels(SerializedProperty allComponents)
 		{
@@ -179,25 +187,37 @@ namespace OmiyaGames.MVC.Editor
 			{
 				// Grab the component
 				SerializedProperty component = allComponents.GetArrayElementAtIndex(i).FindPropertyRelative("component");
-
-				// Check if this component is a model in the ModelFactory
-				if ((component != null) && (component.objectReferenceValue is IModel) && ModelFactory.Contains((IModel)component.objectReferenceValue))
+				if (component != null)
 				{
-					// If so, check if an editor for this model already exists
-					if (objectToEditorCache.TryGetValue(component.objectReferenceValue, out var modelEditor) == false)
+					// Check if this component is a model in the ModelFactory
+					Object referencedObject = component.objectReferenceValue;
+					if ((referencedObject is IModel) && ModelFactory.Contains((IModel)referencedObject))
 					{
-						// If not, construct one, and cache it
-						modelEditor = UnityEditor.Editor.CreateEditor(component.objectReferenceValue);
-						objectToEditorCache.Add(component.objectReferenceValue, modelEditor);
-					}
+						// If so, check if an editor for this model already exists
+						if (objectToEditorCache.TryGetValue(referencedObject, out var modelEditor) == false)
+						{
+							// If not, construct one, and cache it
+							modelEditor = UnityEditor.Editor.CreateEditor(referencedObject);
+							objectToEditorCache.Add(referencedObject, modelEditor);
+						}
 
-					// Draw the component's title bar
-					component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, modelEditor);
-					if (component.isExpanded)
+						// Draw the component's title bar
+						component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, modelEditor);
+						if (component.isExpanded)
+						{
+							// Draw the content of the component
+							modelEditor.DrawDefaultInspector();
+							EditorGUILayout.Space();
+						}
+					}
+					else if (referencedObject is ModelFactory)
 					{
-						// Draw the content of the component
-						modelEditor.DrawDefaultInspector();
-						EditorGUILayout.Space();
+						// If, instead, this component is a ModelFactory,
+						// FIXME: set its property fields.
+						// test below is always null.  Not sure why
+						var test = component.FindPropertyRelative("allowLazyGet");
+						Debug.Log("Found ModelFactory: " + component.CountInProperty());
+						//component.boolValue = allowLazyModelLoading;
 					}
 				}
 			}
