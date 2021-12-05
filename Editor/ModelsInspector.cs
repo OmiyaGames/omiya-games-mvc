@@ -6,7 +6,7 @@ namespace OmiyaGames.MVC.Editor
 {
 	///-----------------------------------------------------------------------
 	/// <remarks>
-	/// <copyright file="ModelInspector.cs" company="Omiya Games">
+	/// <copyright file="ModelsInspector.cs" company="Omiya Games">
 	/// The MIT License (MIT)
 	/// 
 	/// Copyright (c) 2021 Omiya Games
@@ -46,13 +46,14 @@ namespace OmiyaGames.MVC.Editor
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// Creates a window that always displays <seealso cref="ModelInspector"/>.
+	/// Creates a window that displays the content of all models generated
+	/// by <seealso cref="ModelFactory"/>
 	/// </summary>
-	public class ModelInspector : EditorWindow
+	public class ModelsInspector : EditorWindow
 	{
-		const string TabTitle = "Model Inspector";
+		const string TabTitle = "Models Inspector";
 		const string IconPath = "Packages/com.omiyagames.mvc/Editor/Icons/model.png";
-		const string Tooltip = "Displays runtime model data";
+		const string Tooltip = "Displays runtime data";
 
 		static readonly Vector2 MinSize =  new Vector2(300f, 300f);
 		UnityEditor.Editor editor = null;
@@ -60,11 +61,11 @@ namespace OmiyaGames.MVC.Editor
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
 		readonly List<Object> destroyedObjects = new List<Object>();
 
-		[MenuItem("Tools/Omiya Games/Model Inspector")]
-		[MenuItem("Window/Omiya Games/Model Inspector")]
+		[MenuItem("Tools/Omiya Games/Models Inspector")]
+		[MenuItem("Window/Omiya Games/Models Inspector")]
 		static void Initialize()
 		{
-			ModelInspector window = GetWindow<ModelInspector>("Model Inspector", true);
+			ModelsInspector window = GetWindow<ModelsInspector>(TabTitle, true);
 			window.minSize = MinSize;
 			window.Show();
 		}
