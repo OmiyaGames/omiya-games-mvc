@@ -110,6 +110,7 @@ namespace OmiyaGames.MVC.Editor
 
 			// Draw the toolbar
 			DrawToolbar();
+			ModelFactory.Instance.IsGetLazy = allowLazyModelLoading;
 
 			// Update the factory gameobject to its latest settings
 			SerializedObject factory = editor.serializedObject;
@@ -187,34 +188,26 @@ namespace OmiyaGames.MVC.Editor
 			{
 				// Grab the component
 				SerializedProperty component = allComponents.GetArrayElementAtIndex(i).FindPropertyRelative("component");
-				if (component != null)
-				{
-					// Check if this component is a model in the ModelFactory
-					Object referencedObject = component.objectReferenceValue;
-					if ((referencedObject is IModel) && ModelFactory.Contains((IModel)referencedObject))
-					{
-						// If so, check if an editor for this model already exists
-						if (objectToEditorCache.TryGetValue(referencedObject, out var modelEditor) == false)
-						{
-							// If not, construct one, and cache it
-							modelEditor = UnityEditor.Editor.CreateEditor(referencedObject);
-							objectToEditorCache.Add(referencedObject, modelEditor);
-						}
 
-						// Draw the component's title bar
-						component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, modelEditor);
-						if (component.isExpanded)
-						{
-							// Draw the content of the component
-							modelEditor.DrawDefaultInspector();
-							EditorGUILayout.Space();
-						}
-					}
-					else if (referencedObject is ModelFactory)
+				// Check if this component is a model in the ModelFactory
+				Object referencedObject = component?.objectReferenceValue;
+				if ((referencedObject is IModel) && ModelFactory.Contains((IModel)referencedObject))
+				{
+					// If so, check if an editor for this model already exists
+					if (objectToEditorCache.TryGetValue(referencedObject, out var modelEditor) == false)
 					{
-						// If, instead, this component is a ModelFactory,
-						// update its settings based on what's displayed in the toolbar
-						((ModelFactory)referencedObject).IsGetLazy = allowLazyModelLoading;
+						// If not, construct one, and cache it
+						modelEditor = UnityEditor.Editor.CreateEditor(referencedObject);
+						objectToEditorCache.Add(referencedObject, modelEditor);
+					}
+
+					// Draw the component's title bar
+					component.isExpanded = EditorGUILayout.InspectorTitlebar(component.isExpanded, modelEditor);
+					if (component.isExpanded)
+					{
+						// Draw the content of the component
+						modelEditor.DrawDefaultInspector();
+						EditorGUILayout.Space();
 					}
 				}
 			}
