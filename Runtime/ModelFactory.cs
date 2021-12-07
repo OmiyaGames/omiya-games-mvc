@@ -79,9 +79,6 @@ namespace OmiyaGames.MVC
 			}
 		}
 
-		[SerializeField]
-		bool allowLazyGet = false;
-
 		readonly Dictionary<KeyPair, IModel> keyToModelMap = new Dictionary<KeyPair, IModel>();
 		readonly HashSet<IModel> modelSet = new HashSet<IModel>();
 
@@ -97,6 +94,23 @@ namespace OmiyaGames.MVC
 		/// Number of models created so far.
 		/// </summary>
 		public static int NumberOfModels => KeyToModelMap.Count;
+		/// <summary>
+		/// Set to <c>true</c> to make <seealso cref="Get{T}(string)"/>
+		/// lazy-load <see cref="IModel"/>s.
+		/// </summary>
+		/// <remarks>
+		/// Only works on <c>UNITY_EDITOR</c> builds.
+		/// </remarks>
+		public bool IsGetLazy
+		{
+#if !UNITY_EDITOR
+			get => false;
+			set { }
+#else
+			get;
+			set;
+#endif
+		}
 		static Dictionary<KeyPair, IModel> KeyToModelMap => Instance.keyToModelMap;
 		static HashSet<IModel> ModelSet => Instance.modelSet;
 
@@ -212,8 +226,12 @@ namespace OmiyaGames.MVC
 			// Check if the key exists in the dictionary
 			if (KeyToModelMap.TryGetValue(pair, out IModel model) == false)
 			{
+#if !UNITY_EDITOR
+				// If not, don't let the code proceed
+				throw new ArgumentException($"Model \"{typeof(T).Name}\" with key \"{key}\" has not been created yet.", "key");
+#else
 				// If not, check if Get is allowed to lazy-load a model
-				if (Instance.allowLazyGet)
+				if (Instance.IsGetLazy)
 				{
 					// If so, create a new model
 					model = Create<T>(key);
@@ -224,6 +242,7 @@ namespace OmiyaGames.MVC
 					// If not, don't let the code proceed
 					throw new ArgumentException($"Model \"{typeof(T).Name}\" with key \"{key}\" has not been created yet.", "key");
 				}
+#endif
 			}
 
 			// Cast the model

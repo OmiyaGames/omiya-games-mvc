@@ -213,11 +213,8 @@ namespace OmiyaGames.MVC.Editor
 					else if (referencedObject is ModelFactory)
 					{
 						// If, instead, this component is a ModelFactory,
-						// FIXME: set its property fields.
-						// test below is always null.  Not sure why
-						var test = component.FindPropertyRelative("allowLazyGet");
-						Debug.Log("Found ModelFactory: " + component.CountInProperty());
-						//component.boolValue = allowLazyModelLoading;
+						// update its settings based on what's displayed in the toolbar
+						((ModelFactory)referencedObject).IsGetLazy = allowLazyModelLoading;
 					}
 				}
 			}
