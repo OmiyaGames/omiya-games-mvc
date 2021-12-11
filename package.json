@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "com.unity.ext.nunit": "1.0.0",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.textmeshpro": "3.0.6",
     "com.omiyagames.global": "1.1.0",
     "com.omiyagames.common": "1.1.0"
   },
