@@ -56,14 +56,8 @@ namespace OmiyaGames.MVC
 
 		struct KeyPair
 		{
-			public KeyPair(Type type, string key)
+			public KeyPair(Type type, object key)
 			{
-				// Prevent null keys.
-				if (key == null)
-				{
-					throw new ArgumentNullException("key");
-				}
-
 				// Setup member properties
 				Type = type;
 				Key = key;
@@ -73,7 +67,7 @@ namespace OmiyaGames.MVC
 			{
 				get;
 			}
-			public string Key
+			public object Key
 			{
 				get;
 			}
@@ -95,7 +89,7 @@ namespace OmiyaGames.MVC
 		/// </summary>
 		public static int NumberOfModels => KeyToModelMap.Count;
 		/// <summary>
-		/// Set to <c>true</c> to make <seealso cref="Get{T}(string)"/>
+		/// Set to <c>true</c> to make <seealso cref="Get{T}(object)"/>
 		/// lazy-load <see cref="IModel"/>s.
 		/// </summary>
 		/// <remarks>
@@ -136,8 +130,8 @@ namespace OmiyaGames.MVC
 		/// as <paramref name="key"/> has already been created.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Get{T}(string)"/>
-		public static T Create<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Get{T}(object)"/>
+		public static T Create<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -176,7 +170,7 @@ namespace OmiyaGames.MVC
 		/// <exception cref="ArgumentNullException">
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
-		public static bool Contains<T>(string key = "")
+		public static bool Contains<T>(object key = null)
 		{
 			return KeyToModelMap.ContainsKey(new KeyPair(typeof(T), key));
 		}
@@ -198,7 +192,7 @@ namespace OmiyaGames.MVC
 
 		/// <summary>
 		/// Gets an existing <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to get.
@@ -217,8 +211,8 @@ namespace OmiyaGames.MVC
 		/// as <paramref name="key"/> has not been created yet.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static T Get<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static T Get<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -251,7 +245,7 @@ namespace OmiyaGames.MVC
 
 		/// <summary>
 		/// Attempts to get an existing <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to get.
@@ -270,8 +264,8 @@ namespace OmiyaGames.MVC
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool TryGet<T>(string key, out T model) where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool TryGet<T>(object key, out T model) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -309,12 +303,12 @@ namespace OmiyaGames.MVC
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool TryGet<T>(out T model) where T : Component, IModel => TryGet("", out model);
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool TryGet<T>(out T model) where T : Component, IModel => TryGet(null, out model);
 
 		/// <summary>
 		/// Attempts to destroy an <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to destroy.
@@ -328,8 +322,8 @@ namespace OmiyaGames.MVC
 		/// <exception cref="ArgumentNullException">
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool Release<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool Release<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);

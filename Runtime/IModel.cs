@@ -50,16 +50,16 @@ namespace OmiyaGames.MVC
 		/// <summary>
 		/// Key associated with this model.
 		/// </summary>
-		string Key
+		object Key
 		{
 			get;
 		}
 
 		/// <summary>
-		/// Called by <seealso cref="ModelFactory.Create{T}(string)"/>.
+		/// Called by <seealso cref="ModelFactory.Create{T}(object)"/>.
 		/// </summary>
 		/// <param name="key">Key associated with this model.</param>
 		/// <param name="source">The factory creating this model.</param>
-		void OnCreate(string key, ModelFactory source);
+		void OnCreate(object key, ModelFactory source);
 	}
 }

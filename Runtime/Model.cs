@@ -51,19 +51,15 @@ namespace OmiyaGames.MVC
 	{
 		[SerializeField]
 		[ReadOnly]
-		string key;
+		object key;
 
 		/// <inheritdoc/>
-		public string Key => key;
+		public object Key => key;
 
 		/// <inheritdoc/>
-		public void OnCreate(string key, ModelFactory source)
+		public void OnCreate(object key, ModelFactory source)
 		{
-			if (key == null)
-			{
-				throw new System.ArgumentNullException("key");
-			}
-			else if (source == null)
+			if (source == null)
 			{
 				throw new System.ArgumentNullException("source");
 			}
@@ -74,7 +70,7 @@ namespace OmiyaGames.MVC
 		}
 
 		/// <summary>
-		/// Called by <seealso cref="ModelFactory.Create{T}(string)"/>.
+		/// Called by <seealso cref="ModelFactory.Create{T}(object)"/>.
 		/// </summary>
 		/// <param name="source">The factory creating this model.</param>
 		/// <remarks>
