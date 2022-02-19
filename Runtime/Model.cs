@@ -61,7 +61,7 @@ namespace OmiyaGames.MVC
 		{
 			if (source == null)
 			{
-				throw new System.ArgumentNullException("source");
+				throw new System.ArgumentNullException(nameof(source));
 			}
 
 			// Setup member variables
