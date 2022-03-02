@@ -37,11 +37,20 @@ namespace OmiyaGames.MVC
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Version:</strong> 1.1.0<br/>
-	/// <strong>Date:</strong> 11/27/2021<br/>
+	/// <strong>Version:</strong> 0.1.0-exp<br/>
+	/// <strong>Date:</strong> 11/28/2021<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 0.2.0-exp.1<br/>
+	/// <strong>Date:</strong> 3/2/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Changing key from <c>string</c> to <c>object</c>.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
@@ -54,7 +63,7 @@ namespace OmiyaGames.MVC
 	{
 		const HideFlags Flags = HideFlags.HideInHierarchy | HideFlags.DontSave;
 
-		struct KeyPair
+		struct KeyPair : IEquatable<KeyPair>, IEqualityComparer<KeyPair>
 		{
 			public KeyPair(Type type, object key)
 			{
@@ -70,6 +79,18 @@ namespace OmiyaGames.MVC
 			public object Key
 			{
 				get;
+			}
+
+			public bool Equals(KeyPair other) => Equals(this, other);
+			public bool Equals(KeyPair x, KeyPair y) => Equals(x.Type, y.Type) && Equals(x.Key, y.Key);
+			public int GetHashCode(KeyPair obj)
+			{
+				int returnHash = Type.GetHashCode();
+				if (Key != null)
+				{
+					returnHash ^= Key.GetHashCode();
+				}
+				return returnHash;
 			}
 		}
 
@@ -275,7 +296,7 @@ namespace OmiyaGames.MVC
 
 			// Check if the key exists in the dictionary
 			bool returnFlag = KeyToModelMap.TryGetValue(pair, out IModel returnModel);
-			if(returnFlag)
+			if (returnFlag)
 			{
 				// Cast the model
 				model = (T)returnModel;
