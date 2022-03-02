@@ -32,7 +32,7 @@ namespace OmiyaGames.MVC
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Version:</strong> 1.1.0<br/>
+	/// <strong>Version:</strong> 0.1.0-exp<br/>
 	/// <strong>Date:</strong> 11/28/2021<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>

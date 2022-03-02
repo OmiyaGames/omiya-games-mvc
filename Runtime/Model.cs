@@ -34,11 +34,20 @@ namespace OmiyaGames.MVC
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Version:</strong> 1.1.0<br/>
+	/// <strong>Version:</strong> 0.1.0-exp<br/>
 	/// <strong>Date:</strong> 11/28/2021<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 0.2.0-exp.1<br/>
+	/// <strong>Date:</strong> 3/2/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Changing key from <c>string</c> to <c>object</c>.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
@@ -59,11 +68,6 @@ namespace OmiyaGames.MVC
 		/// <inheritdoc/>
 		public void OnCreate(object key, ModelFactory source)
 		{
-			if (source == null)
-			{
-				throw new System.ArgumentNullException(nameof(source));
-			}
-
 			// Setup member variables
 			this.key = key;
 			OnCreate(source);
