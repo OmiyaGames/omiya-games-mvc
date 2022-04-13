@@ -37,11 +37,20 @@ namespace OmiyaGames.MVC
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Version:</strong> 1.1.0<br/>
-	/// <strong>Date:</strong> 11/27/2021<br/>
+	/// <strong>Version:</strong> 0.1.0-exp<br/>
+	/// <strong>Date:</strong> 11/28/2021<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 0.2.0-exp.1<br/>
+	/// <strong>Date:</strong> 3/2/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Changing key from <c>string</c> to <c>object</c>.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
@@ -54,16 +63,10 @@ namespace OmiyaGames.MVC
 	{
 		const HideFlags Flags = HideFlags.HideInHierarchy | HideFlags.DontSave;
 
-		struct KeyPair
+		struct KeyPair : IEquatable<KeyPair>, IEqualityComparer<KeyPair>
 		{
-			public KeyPair(Type type, string key)
+			public KeyPair(Type type, object key)
 			{
-				// Prevent null keys.
-				if (key == null)
-				{
-					throw new ArgumentNullException("key");
-				}
-
 				// Setup member properties
 				Type = type;
 				Key = key;
@@ -73,14 +76,23 @@ namespace OmiyaGames.MVC
 			{
 				get;
 			}
-			public string Key
+			public object Key
 			{
 				get;
 			}
-		}
 
-		static Dictionary<KeyPair, IModel> KeyToModelMap => Instance.keyToModelMap;
-		static HashSet<IModel> ModelSet => Instance.modelSet;
+			public bool Equals(KeyPair other) => Equals(this, other);
+			public bool Equals(KeyPair x, KeyPair y) => Equals(x.Type, y.Type) && Equals(x.Key, y.Key);
+			public int GetHashCode(KeyPair obj)
+			{
+				int returnHash = Type.GetHashCode();
+				if (Key != null)
+				{
+					returnHash ^= Key.GetHashCode();
+				}
+				return returnHash;
+			}
+		}
 
 		readonly Dictionary<KeyPair, IModel> keyToModelMap = new Dictionary<KeyPair, IModel>();
 		readonly HashSet<IModel> modelSet = new HashSet<IModel>();
@@ -97,6 +109,25 @@ namespace OmiyaGames.MVC
 		/// Number of models created so far.
 		/// </summary>
 		public static int NumberOfModels => KeyToModelMap.Count;
+		/// <summary>
+		/// Set to <c>true</c> to make <seealso cref="Get{T}(object)"/>
+		/// lazy-load <see cref="IModel"/>s.
+		/// </summary>
+		/// <remarks>
+		/// Only works on <c>UNITY_EDITOR</c> builds.
+		/// </remarks>
+		public bool IsGetLazy
+		{
+#if !UNITY_EDITOR
+			get => false;
+			set { }
+#else
+			get;
+			set;
+#endif
+		}
+		static Dictionary<KeyPair, IModel> KeyToModelMap => Instance.keyToModelMap;
+		static HashSet<IModel> ModelSet => Instance.modelSet;
 
 		/// <summary>
 		/// Creates a unique <see cref="IModel"/>,
@@ -120,8 +151,8 @@ namespace OmiyaGames.MVC
 		/// as <paramref name="key"/> has already been created.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Get{T}(string)"/>
-		public static T Create<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Get{T}(object)"/>
+		public static T Create<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -160,7 +191,7 @@ namespace OmiyaGames.MVC
 		/// <exception cref="ArgumentNullException">
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
-		public static bool Contains<T>(string key = "")
+		public static bool Contains<T>(object key = null)
 		{
 			return KeyToModelMap.ContainsKey(new KeyPair(typeof(T), key));
 		}
@@ -182,7 +213,7 @@ namespace OmiyaGames.MVC
 
 		/// <summary>
 		/// Gets an existing <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to get.
@@ -201,8 +232,8 @@ namespace OmiyaGames.MVC
 		/// as <paramref name="key"/> has not been created yet.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static T Get<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static T Get<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -210,8 +241,23 @@ namespace OmiyaGames.MVC
 			// Check if the key exists in the dictionary
 			if (KeyToModelMap.TryGetValue(pair, out IModel model) == false)
 			{
+#if !UNITY_EDITOR
 				// If not, don't let the code proceed
 				throw new ArgumentException($"Model \"{typeof(T).Name}\" with key \"{key}\" has not been created yet.", "key");
+#else
+				// If not, check if Get is allowed to lazy-load a model
+				if (Instance.IsGetLazy)
+				{
+					// If so, create a new model
+					model = Create<T>(key);
+					Debug.LogWarning($"Lazy-loaded Model \"{typeof(T).Name}\" with key \"{key}\".\nAs this is not the usual behavior, some strange stuff may occur.");
+				}
+				else
+				{
+					// If not, don't let the code proceed
+					throw new ArgumentException($"Model \"{typeof(T).Name}\" with key \"{key}\" has not been created yet.", "key");
+				}
+#endif
 			}
 
 			// Cast the model
@@ -220,7 +266,7 @@ namespace OmiyaGames.MVC
 
 		/// <summary>
 		/// Attempts to get an existing <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to get.
@@ -239,8 +285,8 @@ namespace OmiyaGames.MVC
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool TryGet<T>(string key, out T model) where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool TryGet<T>(object key, out T model) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);
@@ -250,7 +296,7 @@ namespace OmiyaGames.MVC
 
 			// Check if the key exists in the dictionary
 			bool returnFlag = KeyToModelMap.TryGetValue(pair, out IModel returnModel);
-			if(returnFlag)
+			if (returnFlag)
 			{
 				// Cast the model
 				model = (T)returnModel;
@@ -278,12 +324,12 @@ namespace OmiyaGames.MVC
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
 		/// <seealso cref="IModel"/>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool TryGet<T>(out T model) where T : Component, IModel => TryGet("", out model);
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool TryGet<T>(out T model) where T : Component, IModel => TryGet(null, out model);
 
 		/// <summary>
 		/// Attempts to destroy an <see cref="IModel"/>,
-		/// created by <see cref="Create{T}(string)"/>.
+		/// created by <see cref="Create{T}(object)"/>.
 		/// </summary>
 		/// <typeparam name="T">
 		/// The type of <see cref="IModel"/> to destroy.
@@ -297,8 +343,8 @@ namespace OmiyaGames.MVC
 		/// <exception cref="ArgumentNullException">
 		/// If <paramref name="key"/> is <c>null</c>.
 		/// </exception>
-		/// <seealso cref="Create{T}(string)"/>
-		public static bool Release<T>(string key = "") where T : Component, IModel
+		/// <seealso cref="Create{T}(object)"/>
+		public static bool Release<T>(object key = null) where T : Component, IModel
 		{
 			// Construct a key
 			var pair = new KeyPair(typeof(T), key);

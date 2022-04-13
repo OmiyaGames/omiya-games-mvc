@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace OmiyaGames.MVC
@@ -50,11 +51,71 @@ namespace OmiyaGames.MVC
 	/// </summary>
 	public static class Controller
 	{
+		#region Actions
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		public delegate void Action(object source);
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Argument's type.
+		/// </typeparam>
+		public delegate void Action<in T>(object source, T arg);
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="args">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Arguments' type.
+		/// </typeparam>
+		public delegate void ActionMulti<in T>(object source, params T[] args);
+		#endregion
+
+
+		#region Funcs
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		public delegate T Func<out T>(object source);
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Argument's type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		/// Return type.
+		/// </typeparam>
+		public delegate TResult Func<in TArg, out TResult>(object source, TArg arg);
+		/// <summary>
+		/// A definition for delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="args">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Arguments' type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		/// Return type.
+		/// </typeparam>
+		public delegate TResult FuncMulti<in TArg, out TResult>(object source, params TArg[] args);
+		#endregion
+
+		#region Events
 		/// <summary>
 		/// A definition for event delegates in a <see cref="Model"/>.
 		/// </summary>
 		/// <param name="source">The caller of this event.</param>
-		public delegate void EventBase(object source);
+		public delegate void Event(object source);
 		/// <summary>
 		/// A definition for event delegates in a <see cref="Model"/>.
 		/// </summary>
@@ -62,18 +123,102 @@ namespace OmiyaGames.MVC
 		/// <param name="arg">Supplied event arguments.</param>
 		/// <typeparam name="T">
 		/// Argument's type.
-		/// Classes extending <seealso cref="System.EventArgs"/> recommended.
 		/// </typeparam>
-		public delegate void EventBase<T>(object source, T arg);
+		public delegate void Event<in T>(object source, T arg) where T : System.EventArgs;
+		#endregion
+
+		#region Coroutines
 		/// <summary>
-		/// A definition for event delegates in a <see cref="Model"/>.
+		/// A definition for coroutine delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <returns>A coroutine.</returns>
+		public delegate IEnumerator Coroutine(object source);
+		/// <summary>
+		/// A definition for coroutine delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Argument's type.
+		/// </typeparam>
+		/// <returns>A coroutine.</returns>
+		public delegate IEnumerator Coroutine<T>(object source, T arg);
+		/// <summary>
+		/// A definition for coroutine delegates in a <see cref="Model"/>.
 		/// </summary>
 		/// <param name="source">The caller of this event.</param>
 		/// <param name="args">Supplied event arguments.</param>
 		/// <typeparam name="T">
 		/// Arguments' type.
-		/// Classes extending <seealso cref="System.EventArgs"/> recommended.
 		/// </typeparam>
-		public delegate void EventBaseMulti<T>(object source, params T[] args);
+		/// <returns>A coroutine.</returns>
+		public delegate IEnumerator CoroutineMulti<T>(object source, params T[] args);
+		#endregion
+
+		#region Async
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <returns>A <seealso cref="Task">.</returns>
+		public delegate Task Async(object source);
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Return type.
+		/// </typeparam>
+		/// <returns>A <seealso cref="Task{T}">.</returns>
+		public delegate Task<T> Async<T>(object source);
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Argument's type.
+		/// </typeparam>
+		/// <returns>A <seealso cref="Task">.</returns>
+		public delegate Task AsyncArgs<in T>(object source, T arg);
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="arg">Supplied event arguments.</param>
+		/// <typeparam name="TArgs">
+		/// Argument's type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		/// Return type.
+		/// </typeparam>
+		/// <returns>A <seealso cref="Task{TResult}">.</returns>
+		public delegate Task<TResult> AsyncArgs<in TArgs, TResult>(object source, TArgs arg);
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="args">Supplied event arguments.</param>
+		/// <typeparam name="T">
+		/// Arguments' type.
+		/// </typeparam>
+		/// <returns>A <seealso cref="Task">.</returns>
+		public delegate Task AsyncArgsMulti<in T>(object source, params T[] args);
+		/// <summary>
+		/// A definition for async delegates in a <see cref="Model"/>.
+		/// </summary>
+		/// <param name="source">The caller of this event.</param>
+		/// <param name="args">Supplied event arguments.</param>
+		/// <typeparam name="TArgs">
+		/// Arguments' type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		/// Return type.
+		/// </typeparam>
+		/// <returns>A <seealso cref="Task{TResult}">.</returns>
+		public delegate Task<TResult> AsyncArgsMulti<in TArgs, TResult>(object source, params TArgs[] args);
+		#endregion
 	}
 }

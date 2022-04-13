@@ -6,7 +6,7 @@ namespace OmiyaGames.MVC.Editor
 {
 	///-----------------------------------------------------------------------
 	/// <remarks>
-	/// <copyright file="ModelInspector.cs" company="Omiya Games">
+	/// <copyright file="ModelsInspector.cs" company="Omiya Games">
 	/// The MIT License (MIT)
 	/// 
 	/// Copyright (c) 2021 Omiya Games
@@ -46,25 +46,27 @@ namespace OmiyaGames.MVC.Editor
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// Creates a window that always displays <seealso cref="ModelInspector"/>.
+	/// Creates a window that displays the content of all models generated
+	/// by <seealso cref="ModelFactory"/>
 	/// </summary>
-	public class ModelInspector : EditorWindow
+	public class ModelsInspector : EditorWindow
 	{
-		const string TabTitle = "Model Inspector";
+		const string TabTitle = "Models Inspector";
 		const string IconPath = "Packages/com.omiyagames.mvc/Editor/Icons/model.png";
-		const string Tooltip = "Displays runtime model data";
+		const string Tooltip = "Displays runtime data";
 
 		static readonly Vector2 MinSize =  new Vector2(300f, 300f);
 		UnityEditor.Editor editor = null;
+		bool allowLazyModelLoading = true;
 		Vector2 scrollPosition;
 		readonly Dictionary<Object, UnityEditor.Editor> objectToEditorCache = new Dictionary<Object, UnityEditor.Editor>();
 		readonly List<Object> destroyedObjects = new List<Object>();
 
-		[MenuItem("Tools/Omiya Games/Model Inspector")]
-		[MenuItem("Window/Omiya Games/Model Inspector")]
+		[MenuItem("Tools/Omiya Games/Models Inspector")]
+		[MenuItem("Window/Omiya Games/Models Inspector")]
 		static void Initialize()
 		{
-			ModelInspector window = GetWindow<ModelInspector>("Model Inspector", true);
+			ModelsInspector window = GetWindow<ModelsInspector>(TabTitle, true);
 			window.minSize = MinSize;
 			window.Show();
 		}
@@ -108,6 +110,7 @@ namespace OmiyaGames.MVC.Editor
 
 			// Draw the toolbar
 			DrawToolbar();
+			ModelFactory.Instance.IsGetLazy = allowLazyModelLoading;
 
 			// Update the factory gameobject to its latest settings
 			SerializedObject factory = editor.serializedObject;
@@ -133,6 +136,9 @@ namespace OmiyaGames.MVC.Editor
 			// Draw the toolbar
 			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
 			{
+				// Draw a toggle for lazy-loading models
+				DrawLazyLoadModelsToggle();
+
 				// Set whether controls in the toolbar should be enabled or not
 				bool wasEnabled = GUI.enabled;
 				GUI.enabled = false;
@@ -140,11 +146,11 @@ namespace OmiyaGames.MVC.Editor
 				// Draw the reset button
 				DrawClearButton();
 
-				// Pad the rest of the toolbar with spaces
-				GUILayout.FlexibleSpace();
-
 				// Reset enabled
 				GUI.enabled = wasEnabled;
+
+				// Pad the rest of the toolbar with spaces
+				GUILayout.FlexibleSpace();
 			}
 		}
 
@@ -153,6 +159,9 @@ namespace OmiyaGames.MVC.Editor
 			// Draw the toolbar
 			using (var scope = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
 			{
+				// Draw a toggle for lazy-loading models
+				DrawLazyLoadModelsToggle();
+
 				// Draw the reset button
 				if (DrawClearButton() == true)
 				{
@@ -170,6 +179,7 @@ namespace OmiyaGames.MVC.Editor
 		}
 
 		bool DrawClearButton() => GUILayout.Button("Clear", EditorStyles.toolbarButton, GUILayout.Width(50f));
+		void DrawLazyLoadModelsToggle() => allowLazyModelLoading = EditorGUILayout.ToggleLeft("Always Generate Models", allowLazyModelLoading, GUILayout.Width(160f));
 
 		void DrawAllModels(SerializedProperty allComponents)
 		{
@@ -180,14 +190,15 @@ namespace OmiyaGames.MVC.Editor
 				SerializedProperty component = allComponents.GetArrayElementAtIndex(i).FindPropertyRelative("component");
 
 				// Check if this component is a model in the ModelFactory
-				if ((component != null) && (component.objectReferenceValue is IModel) && ModelFactory.Contains((IModel)component.objectReferenceValue))
+				Object referencedObject = component?.objectReferenceValue;
+				if ((referencedObject is IModel) && ModelFactory.Contains((IModel)referencedObject))
 				{
 					// If so, check if an editor for this model already exists
-					if (objectToEditorCache.TryGetValue(component.objectReferenceValue, out var modelEditor) == false)
+					if (objectToEditorCache.TryGetValue(referencedObject, out var modelEditor) == false)
 					{
 						// If not, construct one, and cache it
-						modelEditor = UnityEditor.Editor.CreateEditor(component.objectReferenceValue);
-						objectToEditorCache.Add(component.objectReferenceValue, modelEditor);
+						modelEditor = UnityEditor.Editor.CreateEditor(referencedObject);
+						objectToEditorCache.Add(referencedObject, modelEditor);
 					}
 
 					// Draw the component's title bar
