@@ -1,3 +1,454 @@
 ### YamlMime:XRefMap
 sorted: true
-references: []
+references:
+- uid: OmiyaGames.MVC
+  name: OmiyaGames.MVC
+  href: api/OmiyaGames.MVC.html
+  commentId: N:OmiyaGames.MVC
+  fullName: OmiyaGames.MVC
+  nameWithType: OmiyaGames.MVC
+- uid: OmiyaGames.MVC.Controller
+  name: Controller
+  href: api/OmiyaGames.MVC.Controller.html
+  commentId: T:OmiyaGames.MVC.Controller
+  fullName: OmiyaGames.MVC.Controller
+  nameWithType: Controller
+- uid: OmiyaGames.MVC.Controller.Action
+  name: Controller.Action
+  href: api/OmiyaGames.MVC.Controller.Action.html
+  commentId: T:OmiyaGames.MVC.Controller.Action
+  fullName: OmiyaGames.MVC.Controller.Action
+  nameWithType: Controller.Action
+- uid: OmiyaGames.MVC.Controller.Action`1
+  name: Controller.Action<T>
+  href: api/OmiyaGames.MVC.Controller.Action-1.html
+  commentId: T:OmiyaGames.MVC.Controller.Action`1
+  name.vb: Controller.Action(Of T)
+  fullName: OmiyaGames.MVC.Controller.Action<T>
+  fullName.vb: OmiyaGames.MVC.Controller.Action(Of T)
+  nameWithType: Controller.Action<T>
+  nameWithType.vb: Controller.Action(Of T)
+- uid: OmiyaGames.MVC.Controller.ActionMulti`1
+  name: Controller.ActionMulti<T>
+  href: api/OmiyaGames.MVC.Controller.ActionMulti-1.html
+  commentId: T:OmiyaGames.MVC.Controller.ActionMulti`1
+  name.vb: Controller.ActionMulti(Of T)
+  fullName: OmiyaGames.MVC.Controller.ActionMulti<T>
+  fullName.vb: OmiyaGames.MVC.Controller.ActionMulti(Of T)
+  nameWithType: Controller.ActionMulti<T>
+  nameWithType.vb: Controller.ActionMulti(Of T)
+- uid: OmiyaGames.MVC.Controller.Async
+  name: Controller.Async
+  href: api/OmiyaGames.MVC.Controller.Async.html
+  commentId: T:OmiyaGames.MVC.Controller.Async
+  fullName: OmiyaGames.MVC.Controller.Async
+  nameWithType: Controller.Async
+- uid: OmiyaGames.MVC.Controller.Async`1
+  name: Controller.Async<T>
+  href: api/OmiyaGames.MVC.Controller.Async-1.html
+  commentId: T:OmiyaGames.MVC.Controller.Async`1
+  name.vb: Controller.Async(Of T)
+  fullName: OmiyaGames.MVC.Controller.Async<T>
+  fullName.vb: OmiyaGames.MVC.Controller.Async(Of T)
+  nameWithType: Controller.Async<T>
+  nameWithType.vb: Controller.Async(Of T)
+- uid: OmiyaGames.MVC.Controller.AsyncArgs`1
+  name: Controller.AsyncArgs<T>
+  href: api/OmiyaGames.MVC.Controller.AsyncArgs-1.html
+  commentId: T:OmiyaGames.MVC.Controller.AsyncArgs`1
+  name.vb: Controller.AsyncArgs(Of T)
+  fullName: OmiyaGames.MVC.Controller.AsyncArgs<T>
+  fullName.vb: OmiyaGames.MVC.Controller.AsyncArgs(Of T)
+  nameWithType: Controller.AsyncArgs<T>
+  nameWithType.vb: Controller.AsyncArgs(Of T)
+- uid: OmiyaGames.MVC.Controller.AsyncArgs`2
+  name: Controller.AsyncArgs<TArgs, TResult>
+  href: api/OmiyaGames.MVC.Controller.AsyncArgs-2.html
+  commentId: T:OmiyaGames.MVC.Controller.AsyncArgs`2
+  name.vb: Controller.AsyncArgs(Of TArgs, TResult)
+  fullName: OmiyaGames.MVC.Controller.AsyncArgs<TArgs, TResult>
+  fullName.vb: OmiyaGames.MVC.Controller.AsyncArgs(Of TArgs, TResult)
+  nameWithType: Controller.AsyncArgs<TArgs, TResult>
+  nameWithType.vb: Controller.AsyncArgs(Of TArgs, TResult)
+- uid: OmiyaGames.MVC.Controller.AsyncArgsMulti`1
+  name: Controller.AsyncArgsMulti<T>
+  href: api/OmiyaGames.MVC.Controller.AsyncArgsMulti-1.html
+  commentId: T:OmiyaGames.MVC.Controller.AsyncArgsMulti`1
+  name.vb: Controller.AsyncArgsMulti(Of T)
+  fullName: OmiyaGames.MVC.Controller.AsyncArgsMulti<T>
+  fullName.vb: OmiyaGames.MVC.Controller.AsyncArgsMulti(Of T)
+  nameWithType: Controller.AsyncArgsMulti<T>
+  nameWithType.vb: Controller.AsyncArgsMulti(Of T)
+- uid: OmiyaGames.MVC.Controller.AsyncArgsMulti`2
+  name: Controller.AsyncArgsMulti<TArgs, TResult>
+  href: api/OmiyaGames.MVC.Controller.AsyncArgsMulti-2.html
+  commentId: T:OmiyaGames.MVC.Controller.AsyncArgsMulti`2
+  name.vb: Controller.AsyncArgsMulti(Of TArgs, TResult)
+  fullName: OmiyaGames.MVC.Controller.AsyncArgsMulti<TArgs, TResult>
+  fullName.vb: OmiyaGames.MVC.Controller.AsyncArgsMulti(Of TArgs, TResult)
+  nameWithType: Controller.AsyncArgsMulti<TArgs, TResult>
+  nameWithType.vb: Controller.AsyncArgsMulti(Of TArgs, TResult)
+- uid: OmiyaGames.MVC.Controller.Coroutine
+  name: Controller.Coroutine
+  href: api/OmiyaGames.MVC.Controller.Coroutine.html
+  commentId: T:OmiyaGames.MVC.Controller.Coroutine
+  fullName: OmiyaGames.MVC.Controller.Coroutine
+  nameWithType: Controller.Coroutine
+- uid: OmiyaGames.MVC.Controller.Coroutine`1
+  name: Controller.Coroutine<T>
+  href: api/OmiyaGames.MVC.Controller.Coroutine-1.html
+  commentId: T:OmiyaGames.MVC.Controller.Coroutine`1
+  name.vb: Controller.Coroutine(Of T)
+  fullName: OmiyaGames.MVC.Controller.Coroutine<T>
+  fullName.vb: OmiyaGames.MVC.Controller.Coroutine(Of T)
+  nameWithType: Controller.Coroutine<T>
+  nameWithType.vb: Controller.Coroutine(Of T)
+- uid: OmiyaGames.MVC.Controller.CoroutineMulti`1
+  name: Controller.CoroutineMulti<T>
+  href: api/OmiyaGames.MVC.Controller.CoroutineMulti-1.html
+  commentId: T:OmiyaGames.MVC.Controller.CoroutineMulti`1
+  name.vb: Controller.CoroutineMulti(Of T)
+  fullName: OmiyaGames.MVC.Controller.CoroutineMulti<T>
+  fullName.vb: OmiyaGames.MVC.Controller.CoroutineMulti(Of T)
+  nameWithType: Controller.CoroutineMulti<T>
+  nameWithType.vb: Controller.CoroutineMulti(Of T)
+- uid: OmiyaGames.MVC.Controller.Event
+  name: Controller.Event
+  href: api/OmiyaGames.MVC.Controller.Event.html
+  commentId: T:OmiyaGames.MVC.Controller.Event
+  fullName: OmiyaGames.MVC.Controller.Event
+  nameWithType: Controller.Event
+- uid: OmiyaGames.MVC.Controller.Event`1
+  name: Controller.Event<T>
+  href: api/OmiyaGames.MVC.Controller.Event-1.html
+  commentId: T:OmiyaGames.MVC.Controller.Event`1
+  name.vb: Controller.Event(Of T)
+  fullName: OmiyaGames.MVC.Controller.Event<T>
+  fullName.vb: OmiyaGames.MVC.Controller.Event(Of T)
+  nameWithType: Controller.Event<T>
+  nameWithType.vb: Controller.Event(Of T)
+- uid: OmiyaGames.MVC.Controller.Func`1
+  name: Controller.Func<T>
+  href: api/OmiyaGames.MVC.Controller.Func-1.html
+  commentId: T:OmiyaGames.MVC.Controller.Func`1
+  name.vb: Controller.Func(Of T)
+  fullName: OmiyaGames.MVC.Controller.Func<T>
+  fullName.vb: OmiyaGames.MVC.Controller.Func(Of T)
+  nameWithType: Controller.Func<T>
+  nameWithType.vb: Controller.Func(Of T)
+- uid: OmiyaGames.MVC.Controller.Func`2
+  name: Controller.Func<TArg, TResult>
+  href: api/OmiyaGames.MVC.Controller.Func-2.html
+  commentId: T:OmiyaGames.MVC.Controller.Func`2
+  name.vb: Controller.Func(Of TArg, TResult)
+  fullName: OmiyaGames.MVC.Controller.Func<TArg, TResult>
+  fullName.vb: OmiyaGames.MVC.Controller.Func(Of TArg, TResult)
+  nameWithType: Controller.Func<TArg, TResult>
+  nameWithType.vb: Controller.Func(Of TArg, TResult)
+- uid: OmiyaGames.MVC.Controller.FuncMulti`2
+  name: Controller.FuncMulti<TArg, TResult>
+  href: api/OmiyaGames.MVC.Controller.FuncMulti-2.html
+  commentId: T:OmiyaGames.MVC.Controller.FuncMulti`2
+  name.vb: Controller.FuncMulti(Of TArg, TResult)
+  fullName: OmiyaGames.MVC.Controller.FuncMulti<TArg, TResult>
+  fullName.vb: OmiyaGames.MVC.Controller.FuncMulti(Of TArg, TResult)
+  nameWithType: Controller.FuncMulti<TArg, TResult>
+  nameWithType.vb: Controller.FuncMulti(Of TArg, TResult)
+- uid: OmiyaGames.MVC.Editor
+  name: OmiyaGames.MVC.Editor
+  href: api/OmiyaGames.MVC.Editor.html
+  commentId: N:OmiyaGames.MVC.Editor
+  fullName: OmiyaGames.MVC.Editor
+  nameWithType: OmiyaGames.MVC.Editor
+- uid: OmiyaGames.MVC.Editor.ModelsInspector
+  name: ModelsInspector
+  href: api/OmiyaGames.MVC.Editor.ModelsInspector.html
+  commentId: T:OmiyaGames.MVC.Editor.ModelsInspector
+  fullName: OmiyaGames.MVC.Editor.ModelsInspector
+  nameWithType: ModelsInspector
+- uid: OmiyaGames.MVC.IModel
+  name: IModel
+  href: api/OmiyaGames.MVC.IModel.html
+  commentId: T:OmiyaGames.MVC.IModel
+  fullName: OmiyaGames.MVC.IModel
+  nameWithType: IModel
+- uid: OmiyaGames.MVC.IModel.Key
+  name: Key
+  href: api/OmiyaGames.MVC.IModel.html#OmiyaGames_MVC_IModel_Key
+  commentId: P:OmiyaGames.MVC.IModel.Key
+  fullName: OmiyaGames.MVC.IModel.Key
+  nameWithType: IModel.Key
+- uid: OmiyaGames.MVC.IModel.Key*
+  name: Key
+  href: api/OmiyaGames.MVC.IModel.html#OmiyaGames_MVC_IModel_Key_
+  commentId: Overload:OmiyaGames.MVC.IModel.Key
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.IModel.Key
+  nameWithType: IModel.Key
+- uid: OmiyaGames.MVC.IModel.OnCreate(System.Object,OmiyaGames.MVC.ModelFactory)
+  name: OnCreate(Object, ModelFactory)
+  href: api/OmiyaGames.MVC.IModel.html#OmiyaGames_MVC_IModel_OnCreate_System_Object_OmiyaGames_MVC_ModelFactory_
+  commentId: M:OmiyaGames.MVC.IModel.OnCreate(System.Object,OmiyaGames.MVC.ModelFactory)
+  fullName: OmiyaGames.MVC.IModel.OnCreate(System.Object, OmiyaGames.MVC.ModelFactory)
+  nameWithType: IModel.OnCreate(Object, ModelFactory)
+- uid: OmiyaGames.MVC.IModel.OnCreate*
+  name: OnCreate
+  href: api/OmiyaGames.MVC.IModel.html#OmiyaGames_MVC_IModel_OnCreate_
+  commentId: Overload:OmiyaGames.MVC.IModel.OnCreate
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.IModel.OnCreate
+  nameWithType: IModel.OnCreate
+- uid: OmiyaGames.MVC.Model
+  name: Model
+  href: api/OmiyaGames.MVC.Model.html
+  commentId: T:OmiyaGames.MVC.Model
+  fullName: OmiyaGames.MVC.Model
+  nameWithType: Model
+- uid: OmiyaGames.MVC.Model.Key
+  name: Key
+  href: api/OmiyaGames.MVC.Model.html#OmiyaGames_MVC_Model_Key
+  commentId: P:OmiyaGames.MVC.Model.Key
+  fullName: OmiyaGames.MVC.Model.Key
+  nameWithType: Model.Key
+- uid: OmiyaGames.MVC.Model.Key*
+  name: Key
+  href: api/OmiyaGames.MVC.Model.html#OmiyaGames_MVC_Model_Key_
+  commentId: Overload:OmiyaGames.MVC.Model.Key
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.Model.Key
+  nameWithType: Model.Key
+- uid: OmiyaGames.MVC.Model.OnCreate(OmiyaGames.MVC.ModelFactory)
+  name: OnCreate(ModelFactory)
+  href: api/OmiyaGames.MVC.Model.html#OmiyaGames_MVC_Model_OnCreate_OmiyaGames_MVC_ModelFactory_
+  commentId: M:OmiyaGames.MVC.Model.OnCreate(OmiyaGames.MVC.ModelFactory)
+  fullName: OmiyaGames.MVC.Model.OnCreate(OmiyaGames.MVC.ModelFactory)
+  nameWithType: Model.OnCreate(ModelFactory)
+- uid: OmiyaGames.MVC.Model.OnCreate(System.Object,OmiyaGames.MVC.ModelFactory)
+  name: OnCreate(Object, ModelFactory)
+  href: api/OmiyaGames.MVC.Model.html#OmiyaGames_MVC_Model_OnCreate_System_Object_OmiyaGames_MVC_ModelFactory_
+  commentId: M:OmiyaGames.MVC.Model.OnCreate(System.Object,OmiyaGames.MVC.ModelFactory)
+  fullName: OmiyaGames.MVC.Model.OnCreate(System.Object, OmiyaGames.MVC.ModelFactory)
+  nameWithType: Model.OnCreate(Object, ModelFactory)
+- uid: OmiyaGames.MVC.Model.OnCreate*
+  name: OnCreate
+  href: api/OmiyaGames.MVC.Model.html#OmiyaGames_MVC_Model_OnCreate_
+  commentId: Overload:OmiyaGames.MVC.Model.OnCreate
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.Model.OnCreate
+  nameWithType: Model.OnCreate
+- uid: OmiyaGames.MVC.ModelFactory
+  name: ModelFactory
+  href: api/OmiyaGames.MVC.ModelFactory.html
+  commentId: T:OmiyaGames.MVC.ModelFactory
+  fullName: OmiyaGames.MVC.ModelFactory
+  nameWithType: ModelFactory
+- uid: OmiyaGames.MVC.ModelFactory.AllModels
+  name: AllModels
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_AllModels
+  commentId: P:OmiyaGames.MVC.ModelFactory.AllModels
+  fullName: OmiyaGames.MVC.ModelFactory.AllModels
+  nameWithType: ModelFactory.AllModels
+- uid: OmiyaGames.MVC.ModelFactory.AllModels*
+  name: AllModels
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_AllModels_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.AllModels
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.AllModels
+  nameWithType: ModelFactory.AllModels
+- uid: OmiyaGames.MVC.ModelFactory.Contains(OmiyaGames.MVC.IModel)
+  name: Contains(IModel)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Contains_OmiyaGames_MVC_IModel_
+  commentId: M:OmiyaGames.MVC.ModelFactory.Contains(OmiyaGames.MVC.IModel)
+  fullName: OmiyaGames.MVC.ModelFactory.Contains(OmiyaGames.MVC.IModel)
+  nameWithType: ModelFactory.Contains(IModel)
+- uid: OmiyaGames.MVC.ModelFactory.Contains*
+  name: Contains
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Contains_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Contains
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Contains
+  nameWithType: ModelFactory.Contains
+- uid: OmiyaGames.MVC.ModelFactory.Contains``1(System.Object)
+  name: Contains<T>(Object)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Contains__1_System_Object_
+  commentId: M:OmiyaGames.MVC.ModelFactory.Contains``1(System.Object)
+  name.vb: Contains(Of T)(Object)
+  fullName: OmiyaGames.MVC.ModelFactory.Contains<T>(System.Object)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.Contains(Of T)(System.Object)
+  nameWithType: ModelFactory.Contains<T>(Object)
+  nameWithType.vb: ModelFactory.Contains(Of T)(Object)
+- uid: OmiyaGames.MVC.ModelFactory.Create*
+  name: Create
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Create
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Create
+  nameWithType: ModelFactory.Create
+- uid: OmiyaGames.MVC.ModelFactory.Create``1(System.Object)
+  name: Create<T>(Object)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_
+  commentId: M:OmiyaGames.MVC.ModelFactory.Create``1(System.Object)
+  name.vb: Create(Of T)(Object)
+  fullName: OmiyaGames.MVC.ModelFactory.Create<T>(System.Object)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.Create(Of T)(System.Object)
+  nameWithType: ModelFactory.Create<T>(Object)
+  nameWithType.vb: ModelFactory.Create(Of T)(Object)
+- uid: OmiyaGames.MVC.ModelFactory.Get*
+  name: Get
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Get_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Get
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Get
+  nameWithType: ModelFactory.Get
+- uid: OmiyaGames.MVC.ModelFactory.Get``1(System.Object)
+  name: Get<T>(Object)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Get__1_System_Object_
+  commentId: M:OmiyaGames.MVC.ModelFactory.Get``1(System.Object)
+  name.vb: Get(Of T)(Object)
+  fullName: OmiyaGames.MVC.ModelFactory.Get<T>(System.Object)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.Get(Of T)(System.Object)
+  nameWithType: ModelFactory.Get<T>(Object)
+  nameWithType.vb: ModelFactory.Get(Of T)(Object)
+- uid: OmiyaGames.MVC.ModelFactory.Instance
+  name: Instance
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Instance
+  commentId: P:OmiyaGames.MVC.ModelFactory.Instance
+  fullName: OmiyaGames.MVC.ModelFactory.Instance
+  nameWithType: ModelFactory.Instance
+- uid: OmiyaGames.MVC.ModelFactory.Instance*
+  name: Instance
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Instance_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Instance
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Instance
+  nameWithType: ModelFactory.Instance
+- uid: OmiyaGames.MVC.ModelFactory.IsGetLazy
+  name: IsGetLazy
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_IsGetLazy
+  commentId: P:OmiyaGames.MVC.ModelFactory.IsGetLazy
+  fullName: OmiyaGames.MVC.ModelFactory.IsGetLazy
+  nameWithType: ModelFactory.IsGetLazy
+- uid: OmiyaGames.MVC.ModelFactory.IsGetLazy*
+  name: IsGetLazy
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_IsGetLazy_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.IsGetLazy
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.IsGetLazy
+  nameWithType: ModelFactory.IsGetLazy
+- uid: OmiyaGames.MVC.ModelFactory.NumberOfModels
+  name: NumberOfModels
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_NumberOfModels
+  commentId: P:OmiyaGames.MVC.ModelFactory.NumberOfModels
+  fullName: OmiyaGames.MVC.ModelFactory.NumberOfModels
+  nameWithType: ModelFactory.NumberOfModels
+- uid: OmiyaGames.MVC.ModelFactory.NumberOfModels*
+  name: NumberOfModels
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_NumberOfModels_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.NumberOfModels
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.NumberOfModels
+  nameWithType: ModelFactory.NumberOfModels
+- uid: OmiyaGames.MVC.ModelFactory.Release*
+  name: Release
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Release_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Release
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Release
+  nameWithType: ModelFactory.Release
+- uid: OmiyaGames.MVC.ModelFactory.Release``1(System.Object)
+  name: Release<T>(Object)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Release__1_System_Object_
+  commentId: M:OmiyaGames.MVC.ModelFactory.Release``1(System.Object)
+  name.vb: Release(Of T)(Object)
+  fullName: OmiyaGames.MVC.ModelFactory.Release<T>(System.Object)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.Release(Of T)(System.Object)
+  nameWithType: ModelFactory.Release<T>(Object)
+  nameWithType.vb: ModelFactory.Release(Of T)(Object)
+- uid: OmiyaGames.MVC.ModelFactory.Reset
+  name: Reset()
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Reset
+  commentId: M:OmiyaGames.MVC.ModelFactory.Reset
+  fullName: OmiyaGames.MVC.ModelFactory.Reset()
+  nameWithType: ModelFactory.Reset()
+- uid: OmiyaGames.MVC.ModelFactory.Reset*
+  name: Reset
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Reset_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.Reset
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.Reset
+  nameWithType: ModelFactory.Reset
+- uid: OmiyaGames.MVC.ModelFactory.TryGet*
+  name: TryGet
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_TryGet_
+  commentId: Overload:OmiyaGames.MVC.ModelFactory.TryGet
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.ModelFactory.TryGet
+  nameWithType: ModelFactory.TryGet
+- uid: OmiyaGames.MVC.ModelFactory.TryGet``1(``0@)
+  name: TryGet<T>(out T)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_TryGet__1___0__
+  commentId: M:OmiyaGames.MVC.ModelFactory.TryGet``1(``0@)
+  name.vb: TryGet(Of T)(ByRef T)
+  fullName: OmiyaGames.MVC.ModelFactory.TryGet<T>(out T)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.TryGet(Of T)(ByRef T)
+  nameWithType: ModelFactory.TryGet<T>(out T)
+  nameWithType.vb: ModelFactory.TryGet(Of T)(ByRef T)
+- uid: OmiyaGames.MVC.ModelFactory.TryGet``1(System.Object,``0@)
+  name: TryGet<T>(Object, out T)
+  href: api/OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_TryGet__1_System_Object___0__
+  commentId: M:OmiyaGames.MVC.ModelFactory.TryGet``1(System.Object,``0@)
+  name.vb: TryGet(Of T)(Object, ByRef T)
+  fullName: OmiyaGames.MVC.ModelFactory.TryGet<T>(System.Object, out T)
+  fullName.vb: OmiyaGames.MVC.ModelFactory.TryGet(Of T)(System.Object, ByRef T)
+  nameWithType: ModelFactory.TryGet<T>(Object, out T)
+  nameWithType.vb: ModelFactory.TryGet(Of T)(Object, ByRef T)
+- uid: OmiyaGames.MVC.View
+  name: View
+  href: api/OmiyaGames.MVC.View.html
+  commentId: T:OmiyaGames.MVC.View
+  fullName: OmiyaGames.MVC.View
+  nameWithType: View
+- uid: OmiyaGames.MVC.View.Bind(Text,ITrackable{System.String})
+  name: Bind(Text, ITrackable<String>)
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Bind_Text_ITrackable_System_String__
+  commentId: M:OmiyaGames.MVC.View.Bind(Text,ITrackable{System.String})
+  name.vb: Bind(Text, ITrackable(Of String))
+  fullName: OmiyaGames.MVC.View.Bind(Text, ITrackable<System.String>)
+  fullName.vb: OmiyaGames.MVC.View.Bind(Text, ITrackable(Of System.String))
+  nameWithType: View.Bind(Text, ITrackable<String>)
+  nameWithType.vb: View.Bind(Text, ITrackable(Of String))
+- uid: OmiyaGames.MVC.View.Bind(TextMeshProUGUI,ITrackable{System.String})
+  name: Bind(TextMeshProUGUI, ITrackable<String>)
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Bind_TextMeshProUGUI_ITrackable_System_String__
+  commentId: M:OmiyaGames.MVC.View.Bind(TextMeshProUGUI,ITrackable{System.String})
+  name.vb: Bind(TextMeshProUGUI, ITrackable(Of String))
+  fullName: OmiyaGames.MVC.View.Bind(TextMeshProUGUI, ITrackable<System.String>)
+  fullName.vb: OmiyaGames.MVC.View.Bind(TextMeshProUGUI, ITrackable(Of System.String))
+  nameWithType: View.Bind(TextMeshProUGUI, ITrackable<String>)
+  nameWithType.vb: View.Bind(TextMeshProUGUI, ITrackable(Of String))
+- uid: OmiyaGames.MVC.View.Bind*
+  name: Bind
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Bind_
+  commentId: Overload:OmiyaGames.MVC.View.Bind
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.View.Bind
+  nameWithType: View.Bind
+- uid: OmiyaGames.MVC.View.Unbind(Text)
+  name: Unbind(Text)
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Unbind_Text_
+  commentId: M:OmiyaGames.MVC.View.Unbind(Text)
+  fullName: OmiyaGames.MVC.View.Unbind(Text)
+  nameWithType: View.Unbind(Text)
+- uid: OmiyaGames.MVC.View.Unbind(TextMeshProUGUI)
+  name: Unbind(TextMeshProUGUI)
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Unbind_TextMeshProUGUI_
+  commentId: M:OmiyaGames.MVC.View.Unbind(TextMeshProUGUI)
+  fullName: OmiyaGames.MVC.View.Unbind(TextMeshProUGUI)
+  nameWithType: View.Unbind(TextMeshProUGUI)
+- uid: OmiyaGames.MVC.View.Unbind*
+  name: Unbind
+  href: api/OmiyaGames.MVC.View.html#OmiyaGames_MVC_View_Unbind_
+  commentId: Overload:OmiyaGames.MVC.View.Unbind
+  isSpec: "True"
+  fullName: OmiyaGames.MVC.View.Unbind
+  nameWithType: View.Unbind

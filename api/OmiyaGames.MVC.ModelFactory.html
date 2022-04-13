@@ -1,0 +1,747 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ModelFactory
+   | Model-View-Controller documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ModelFactory
+   | Model-View-Controller documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="OmiyaGames.MVC.ModelFactory">
+  
+  
+  <h1 id="OmiyaGames_MVC_ModelFactory" data-uid="OmiyaGames.MVC.ModelFactory" class="text-break">Class ModelFactory
+  </h1>
+  <div class="markdown level0 summary"><p>Factory that creates and maintains static instances of
+<a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>s.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ModelFactory</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="OmiyaGames.MVC.html">OmiyaGames.MVC</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="OmiyaGames_MVC_ModelFactory_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ModelFactory : MonoBehaviour</code></pre>
+  </div>
+  <h5 id="OmiyaGames_MVC_ModelFactory_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p><copyright file="ModelFactory.cs" company="Omiya Games">
+The MIT License (MIT)<p>
+<p>Copyright (c) 2021 Omiya Games</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</copyright>
+<table><thead><tr><th>Revision</th><th>Description</th></tr></thead><tbody><tr><td>
+<strong>Version:</strong> 0.1.0-exp<br>
+<strong>Date:</strong> 11/28/2021<br>
+<strong>Author:</strong> Taro Omiya
+</td><td>Initial verison.</td></tr><tr><td>
+<strong>Version:</strong> 0.2.0-exp.1<br>
+<strong>Date:</strong> 3/2/2022<br>
+<strong>Author:</strong> Taro Omiya
+</td><td>
+Changing key from <code>string</code> to <code>object</code>.
+</td></tr></tbody></table></p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_AllModels_" data-uid="OmiyaGames.MVC.ModelFactory.AllModels*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_AllModels" data-uid="OmiyaGames.MVC.ModelFactory.AllModels">AllModels</h4>
+  <div class="markdown level1 summary"><p>Gets all the created models. Order is not guaranteed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;IModel&gt; AllModels { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Instance_" data-uid="OmiyaGames.MVC.ModelFactory.Instance*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Instance" data-uid="OmiyaGames.MVC.ModelFactory.Instance">Instance</h4>
+  <div class="markdown level1 summary"><p>Gets the sole instance of this factory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ModelFactory Instance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OmiyaGames.MVC.ModelFactory.html">ModelFactory</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_IsGetLazy_" data-uid="OmiyaGames.MVC.ModelFactory.IsGetLazy*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_IsGetLazy" data-uid="OmiyaGames.MVC.ModelFactory.IsGetLazy">IsGetLazy</h4>
+  <div class="markdown level1 summary"><p>Set to <code>true</code> to make <a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Get__1_System_Object_">Get&lt;T&gt;(Object)</a>
+lazy-load <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>s.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsGetLazy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_IsGetLazy_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Only works on <code>UNITY_EDITOR</code> builds.</p>
+</div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_NumberOfModels_" data-uid="OmiyaGames.MVC.ModelFactory.NumberOfModels*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_NumberOfModels" data-uid="OmiyaGames.MVC.ModelFactory.NumberOfModels">NumberOfModels</h4>
+  <div class="markdown level1 summary"><p>Number of models created so far.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NumberOfModels { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Contains_" data-uid="OmiyaGames.MVC.ModelFactory.Contains*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Contains_OmiyaGames_MVC_IModel_" data-uid="OmiyaGames.MVC.ModelFactory.Contains(OmiyaGames.MVC.IModel)">Contains(IModel)</h4>
+  <div class="markdown level1 summary"><p>Checks if the factory has <code data-dev-comment-type="paramref" class="paramref">model</code>
+stored in its dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Contains(IModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The instance to check if factory contains it.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if <code data-dev-comment-type="paramref" class="paramref">model</code> is found in the factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Contains_" data-uid="OmiyaGames.MVC.ModelFactory.Contains*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Contains__1_System_Object_" data-uid="OmiyaGames.MVC.ModelFactory.Contains``1(System.Object)">Contains&lt;T&gt;(Object)</h4>
+  <div class="markdown level1 summary"><p>Checks if factory created a model with key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Contains&lt;T&gt;(object key = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Optional key associated with model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if key is found in the factory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Create_" data-uid="OmiyaGames.MVC.ModelFactory.Create*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Create__1_System_Object_" data-uid="OmiyaGames.MVC.ModelFactory.Create``1(System.Object)">Create&lt;T&gt;(Object)</h4>
+  <div class="markdown level1 summary"><p>Creates a unique <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+optionally assoiciated with a <code data-dev-comment-type="paramref" class="paramref">key</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Create&lt;T&gt;(object key = null)
+    where T : Component, IModel</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>To create multiple instances of the same <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+supply a unique key to be associated with each of them.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The newly constructed <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_Create__1_System_Object__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a></div>
+      <div><a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Get__1_System_Object_">Get&lt;T&gt;(Object)</a></div>
+  </div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Get_" data-uid="OmiyaGames.MVC.ModelFactory.Get*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Get__1_System_Object_" data-uid="OmiyaGames.MVC.ModelFactory.Get``1(System.Object)">Get&lt;T&gt;(Object)</h4>
+  <div class="markdown level1 summary"><p>Gets an existing <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+created by <a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Get&lt;T&gt;(object key = null)
+    where T : Component, IModel</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Optional key associated with an <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Associated <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> with <code data-dev-comment-type="paramref" class="paramref">key</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> to get.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_Get__1_System_Object__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a></div>
+      <div><a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a></div>
+  </div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Release_" data-uid="OmiyaGames.MVC.ModelFactory.Release*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Release__1_System_Object_" data-uid="OmiyaGames.MVC.ModelFactory.Release``1(System.Object)">Release&lt;T&gt;(Object)</h4>
+  <div class="markdown level1 summary"><p>Attempts to destroy an <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+created by <a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Release&lt;T&gt;(object key = null)
+    where T : Component, IModel</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key associated with an <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if a created <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> was destroyed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> to destroy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_Release__1_System_Object__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a></div>
+  </div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_Reset_" data-uid="OmiyaGames.MVC.ModelFactory.Reset*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_Reset" data-uid="OmiyaGames.MVC.ModelFactory.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Destroys all the created <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Reset()</code></pre>
+  </div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_TryGet_" data-uid="OmiyaGames.MVC.ModelFactory.TryGet*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_TryGet__1___0__" data-uid="OmiyaGames.MVC.ModelFactory.TryGet``1(``0@)">TryGet&lt;T&gt;(out T)</h4>
+  <div class="markdown level1 summary"><p>Attempts to get an existing <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+created by <see cref="!:Create&lt;T>()"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGet&lt;T&gt;(out T model)
+    where T : Component, IModel</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>An <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> created prior,
+or <code>null</code> if one isn&apos;t found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if a created <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> to get.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_TryGet__1___0___seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a></div>
+      <div><a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a></div>
+  </div>
+  
+  
+  <a id="OmiyaGames_MVC_ModelFactory_TryGet_" data-uid="OmiyaGames.MVC.ModelFactory.TryGet*"></a>
+  <h4 id="OmiyaGames_MVC_ModelFactory_TryGet__1_System_Object___0__" data-uid="OmiyaGames.MVC.ModelFactory.TryGet``1(System.Object,``0@)">TryGet&lt;T&gt;(Object, out T)</h4>
+  <div class="markdown level1 summary"><p>Attempts to get an existing <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>,
+created by <a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGet&lt;T&gt;(object key, out T model)
+    where T : Component, IModel</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key associated with an <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>Associated <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> with <code data-dev-comment-type="paramref" class="paramref">key</code>,
+or <code>null</code> if one isn&apos;t found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if a created <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of <a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a> to get.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="OmiyaGames_MVC_ModelFactory_TryGet__1_System_Object___0___seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="OmiyaGames.MVC.IModel.html">IModel</a></div>
+      <div><a class="xref" href="OmiyaGames.MVC.ModelFactory.html#OmiyaGames_MVC_ModelFactory_Create__1_System_Object_">Create&lt;T&gt;(Object)</a></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2021-2022 Omiya Games
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

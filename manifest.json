@@ -2,10 +2,11 @@
   "sitemap": {
     "fileOptions": {
       "api/*": {
+        "baseUrl": "https://omiyagames.github.io/omiya-games-mvc/",
         "changefreq": "daily"
       }
     },
-    "baseUrl": "https://omiyagames.github.io/template-unity-package/",
+    "baseUrl": "https://omiyagames.github.io/omiya-games-mvc/",
     "changefreq": "weekly"
   },
   "homepages": [],
@@ -22,12 +23,324 @@
       "is_incremental": false
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Action-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Action-1.html",
+          "hash": "4eCbk771TbjPEAdZTxOC+DTzOSmOKRb4IM0fzPMISlw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Action.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Action.html",
+          "hash": "ZNrJzanRgwrlFg+BO+4DERAXssKHcuH72kjhnz/+/Vo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.ActionMulti-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.ActionMulti-1.html",
+          "hash": "InPSepdBxNwSc5y50rqu/rxhoU9EkSUqnVd34C5iaH8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Async-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Async-1.html",
+          "hash": "QFO/BTkNhJeESXtyAbWwi4DnAl5BKB2sIMzVEI36Ic0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Async.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Async.html",
+          "hash": "/uBz3vmaUonbbnwGpHBmmVxtWQNmCrI9kZqGHWLXtB8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgs-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgs-1.html",
+          "hash": "9oi9L2G+G/SA9CPnv1DMNHWwtSR4/i/E6hDPZpR866k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgs-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgs-2.html",
+          "hash": "R8/mZNRi250XQ4zQwKLhPcuss0hC4xYoWmbtbgr/YUc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgsMulti-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgsMulti-1.html",
+          "hash": "kUrUbQD+uLuIE8EzQiMh9h8WzlftzHVF5xHbVHpOJBE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgsMulti-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.AsyncArgsMulti-2.html",
+          "hash": "rbJgEob3/otgFy1oB2EriN048nG6UGjL9MQ3uBVSBMo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Coroutine-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Coroutine-1.html",
+          "hash": "GAZhi3gDDQb5Jei8IxoWofrcmFzDZn01GW83S2sw8aE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Coroutine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Coroutine.html",
+          "hash": "QarEbZGl8MHEx7l+QUivphY+/dZg7RKZJAZvYupS/ik="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.CoroutineMulti-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.CoroutineMulti-1.html",
+          "hash": "PFNNFkCZGaWOEcRNBvxk7o2swo/3+LSlO15DphSh6PQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Event-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Event-1.html",
+          "hash": "qwduHrnVTOVcUPhMXZtjh0HpSx1Uy4zoRAQJFzt2TMM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Event.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Event.html",
+          "hash": "PuH0auH+sb5WMeWJQc2TPwKy14j2YuZ9/VFc5fXMOHY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Func-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Func-1.html",
+          "hash": "dfeOOU3qQ30bg0V1nRku5iF8pOgntjf4RjfDt0Fkjf0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.Func-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.Func-2.html",
+          "hash": "qLc3o3uDrcojVsM8/9Ftu5pe0XqAXmUHNYrZXuQHswQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.FuncMulti-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.FuncMulti-2.html",
+          "hash": "/SEFM+jzNoE9zGN1ydamu1UV4FTrWRurLw2BNnR6Iwg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Controller.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Controller.html",
+          "hash": "MW4JfUhS8KvH+JgRafaZ2TmVWdQt9PgHIOQyvVs7FzQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Editor.ModelsInspector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Editor.ModelsInspector.html",
+          "hash": "XAHJqMD3K/5a8Az17BkzVojs0eRJK7D5pVeg5rECTMU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Editor.html",
+          "hash": "XakVASq33W/iECGxDut3P2UHxRKcez0zarah+OA3QUw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.IModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.IModel.html",
+          "hash": "kiEEO8OnyI498O3JxlB/quXRrH1hNqaE/y4JexBV7Bo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.Model.html",
+          "hash": "JoD3iBWSDbs1rckjbHdS1dmeosZFAPCPccTL9M28eDU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.ModelFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.ModelFactory.html",
+          "hash": "GSijxBUAXt2vb/OQiny/+usPZtwP9VCRn06y3ytorn8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.View.html",
+          "hash": "Gnw9tMl7mCko/N/tRSqOAUidiLCTjGQWcsa1E1oitTU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OmiyaGames.MVC.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OmiyaGames.MVC.html",
+          "hash": "GG13uZKOSfq9yq2hN2HMclKjPosQNg8w+t0QOj4a3qk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "zC6++0d0ZvEzkR+LmjyyV4ceqXeFIRLF5Hvxl51Aqtg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "+2VylG+BRT9MDrIDkMO/MEYRzN6shBudl/+G19765Y0="
+          "hash": "sdvmt0OEAvUlqVA/0OSes62NVzt3ErtOAMWxESHcRjo="
         }
       },
       "is_incremental": false,
@@ -39,7 +352,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/changelog.html",
-          "hash": "wmJlnSa10H2J4m/zjBJ2oLTFDNRMnI94/Rc5IbdlAYA="
+          "hash": "HD8W4PQrAFOmy2Op2Qrbt8GByzNM0a1ASsGGol0Iczs="
         }
       },
       "is_incremental": false,
@@ -51,7 +364,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/controller.html",
-          "hash": "SyPatUownkg5fZnTEnwRQh+Papx9cQNgI3WYqnCoMfI="
+          "hash": "Q647l3B42SYklsk20Zsf6AQdazW7lmM2tfLK3WqHi5g="
         }
       },
       "is_incremental": false,
@@ -63,7 +376,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/model.html",
-          "hash": "0BmUgZaWdvTpabzv8loKmUz78ilFQNp5qeVC6d0Mj/U="
+          "hash": "I1LHKQLbS9KJ5gIDnDEFQtZhN7KcPdKXB2Z/c88nUd0="
         }
       },
       "is_incremental": false,
@@ -87,7 +400,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/view.html",
-          "hash": "5lccRZj97D75lOCJ+XCjvvFoXgTtOZJ7RUozm628UUE="
+          "hash": "FbTjnR1UMLkJpoEf2Mbd8qzjQsVlAGBWToQsIlJxPsQ="
         }
       },
       "is_incremental": false,
@@ -121,7 +434,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "yOoe1dtLd6kWKEz+OrcqTxSluZ+iGzlQhGQVmwEdyj0="
+          "hash": "e/fkbtBY9isn2h9E+K93qTgAF60frngDrZw5HmgR19M="
         }
       },
       "is_incremental": false,
@@ -143,6 +456,12 @@
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 5,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
