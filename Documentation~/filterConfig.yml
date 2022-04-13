@@ -1,18 +1,13 @@
 apiRules:
 - include:
-    # Taro Omiya: Updated namespace for this template
-    # Including the OmiyaGames.Template namespace
-    uidRegex: ^OmiyaGames\.Template$
+    uidRegex: ^OmiyaGames\.MVC$
     type: Namespace
 - include:
-    # Taro Omiya: Updated namespace for this template
-    # Including the OmiyaGames.Template.Editor namespace
-    uidRegex: ^OmiyaGames\.Template\.Editor$
+    uidRegex: ^OmiyaGames\.MVC\.Editor$
     type: Namespace
-- include:
+- exclude:
     uidRegex: ^Global
     type: Namespace
 - exclude:
-    # Taro Omiya: note that I'm ignoring namespaces containing unit tests on purpooses
     uidRegex: .*
     type: Namespace
