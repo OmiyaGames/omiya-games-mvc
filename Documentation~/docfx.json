@@ -14,8 +14,8 @@
     ],
     "build": {
         "globalMetadata": {
-            "_appTitle": "Template Unity Package documentation",
-            "_appFooter": "Copyright © 2020 Omiya Games",
+            "_appTitle": "Model-View-Controller documentation",
+            "_appFooter": "Copyright © 2021-2022 Omiya Games",
             "_enableSearch": true
         },
         "content": [
@@ -46,7 +46,7 @@
         ],
         "sitemap":
         {
-            "baseUrl": "https://omiyagames.github.io/template-unity-package/",
+            "baseUrl": "https://omiyagames.github.io/omiya-games-mvc/",
             "changefreq": "weekly",
             "fileOptions": {
                 "api/*": {

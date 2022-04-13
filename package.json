@@ -2,8 +2,8 @@
   "name": "com.omiyagames.mvc",
   "displayName": "Omiya Games - MVC",
   "version": "0.2.0-exp.1",
-  "unity": "2021.2",
-  "unityRelease": "5f1",
+  "unity": "2021.3",
+  "unityRelease": "0f1",
   "description": "A Model-View-Controller framework implementation by Omiya Games.",
   "category": "Library",
   "type": "library",
@@ -26,6 +26,7 @@
     "Model",
     "View",
     "Controller",
-    "MVC"
+    "MVC",
+    "Framework"
   ]
 }
